@@ -1,0 +1,30 @@
+[
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Salary & Compensation Trends Analysis 2025",
+    "section": "",
+    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+  },
+  {
+    "objectID": "research_introduction.html",
+    "href": "research_introduction.html",
+    "title": "Research Introduction: AI vs. Non-AI Careers",
+    "section": "",
+    "text": "Here is my text"
+  },
+  {
+    "objectID": "research_introduction.html#references",
+    "href": "research_introduction.html#references",
+    "title": "Research Introduction: AI vs. Non-AI Careers",
+    "section": "References",
+    "text": "References"
+  }
+]
