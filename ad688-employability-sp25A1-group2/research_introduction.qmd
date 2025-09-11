@@ -1,5 +1,5 @@
 ---
-title: "Research Introduction: AI vs. Non-AI Careers"
+title: "Research Introduction: Salary & Compensation Trends"
 author: "Ayub, Mahira; Godsy, Ava; Lawrence, Joshua (Group 2)"
 date: today
 format: 
@@ -12,7 +12,9 @@ format:
 ## Introduction
 It is no secret that AI has grown tremendously in availability and impact over the last few years. Students and professionals alike have experienced a rapid indoctrination of AI, whether that be as a simple end-user of ChatGPT or a developer of machine learning models. Being able to understand and adopt these technologies will be indispensable for all industries, and furthermore, open the door to more opportunities with higher compensation.\
 \
-As Applied Business Analytics students, we understand the importance of not only computer science knowledge, but the application of that knowledge to broader organizational understanding. The following literature review outlines the differences between salaries for AI vs. non-AI careers, regional differences, remote job salary comparisons, and industry comparisons.
+As Applied Business Analytics students, we understand the importance of not only computer science knowledge, but the application of that knowledge to broader organizational understanding. The following literature review outlines the differences between salaries for AI vs. non-AI careers, regional differences, remote job salary comparisons, and industry comparisons.\
+\
+This group expects that salaries will be higher for AI careers than for non-AI careers on average. However, unknown is what region and industries have the greatest differences, and whether or not remote status impacts salaries for AI careers.
 
 ## Literature Review
 In this report, researchers Alekseeva et. al. (@Alekseeva_Azar_Giné_Samila_Taska_2021) recapped their findings of the demand for AI skills in the U.S. economy. The authors point out that it can be difficult to find data regarding companies’ demand for AI skills, so they used job posting data. They defined AI job postings as those that included “artificial intelligence”, “machine vision”, “deep learning” or “speech recognition”. They found that larger firms (measured by market capitalization, cash holdings, and investments in R&D) tended to pay more of a premium for AI skills. Firms with more demand for AI skills also offered high salaries in non-AI jobs than firms with less demand for AI skills.\
