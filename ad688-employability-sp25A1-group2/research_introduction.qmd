@@ -1,9 +1,10 @@
 ---
 title: "Research Introduction: AI vs. Non-AI Careers"
-author: "Group 2"
+author: "Ayub, Mahira; Godsy, Ava; Lawrence, Joshua (Group 2)"
 date: today
 format: 
   html:
+    theme: minty
     bibliography: references.bib
     csl: csl/econometrica.csl
     toc: true
