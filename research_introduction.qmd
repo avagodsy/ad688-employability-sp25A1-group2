@@ -1,6 +1,18 @@
 ---
 title: "Research Introduction: Salary & Compensation Trends"
-author: "Ayub, Mahira; Godsy, Ava; Lawrence, Joshua (Group 2)"
+author:
+  - name: Mahira Ayub
+    affiliations:
+      - id: bu
+        name: Boston University
+        city: Boston
+        state: MA
+  - name: Ava Godsy
+    affiliations:
+      - ref: bu
+  - name: Joshua Lawrence
+    affiliations:
+      - ref: bu
 date: today
 format: 
   html:
