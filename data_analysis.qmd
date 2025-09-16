@@ -18,14 +18,12 @@ bibliography: references.bib
 csl: csl/econometrica.csl
 format: 
   html:
+    theme: minty
     toc: true
     number-sections: true
     df-print: paged
 ---
-* Explain
-+ Which columns are irrelevant or redundant?
-+ Why are we removing multiple versions of NAICS/SOC codes?
-+ How will this improve analysis? 
+
 ```{python}
 from pyspark.sql import SparkSession
 
@@ -33,8 +31,78 @@ from pyspark.sql import SparkSession
 spark = SparkSession.builder.appName("JobPostingsAnalysis").getOrCreate()
 
 # Load the CSV file into a Spark DataFrame
-df = spark.read.option("header", "true").option("inferSchema", "true").option("multiLine","true").option("escape", "\"").csv("../../data/lightcast_job_postings.csv")
+df = spark.read.option("header", "true").option("inferSchema", "true").option("multiLine","true").option("escape", "\"").csv("/lightcast_job_postings.csv")
 
 # Show schema
 df.printSchema()
 ```
+
+## Dropping Unncessary Columns
+
+Answer the Questions
++ Which columns are irrelevant or redundant?
++ Why are we removing multiple versions of NAICS/SOC codes?
++ How will this improve analysis? 
+```{python}
+columns_to_drop = [
+    "ID", "URL", "ACTIVE_URLS", "DUPLICATES", "LAST_UPDATED_TIMESTAMP",
+    "NAICS2", "NAICS3", "NAICS4", "NAICS5", "NAICS6",
+    "SOC_2", "SOC_3", "SOC_5"
+]
+df.drop(columns=columns_to_drop, inplace=True)
+```
+
+## Handling Missing Values
+Answer the question: How should missing values be handled? 
+
+```{python}
+import missingno as msno
+
+# Visualize missing data
+msno.heatmap(df)
+plt.title("Missing Values Heatmap")
+plt.show()
+
+# Drop columns with >50% missing values
+df.dropna(thresh=len(df) * 0.5, axis=1, inplace=True)
+
+# Fill missing values
+df["Salary"].fillna(df["Salary"].median(), inplace=True)
+df["Industry"].fillna("Unknown", inplace=True)
+
+```
+
+## Remove Duplicates 
+
+```{python}
+df = df.drop_duplicates(subset=["TITLE", "COMPANY", "LOCATION", "POSTED"], keep="first")
+```
+
+# Exploratory Data Analysis 
+
+## Job Postings by Industry
+
+```{python}
+fig = px.bar(df["Industry"].value_counts(), title="Job Postings by Industry")
+fig.show()
+```
+
+Job Posting Anaylsis 
+
+## Salary Distribution by Industry
+
+```{python}
+fig = px.box(df, x="Industry", y="Salary", title="Salary Distribution by Industry")
+fig.show()
+```
+
+Job Posting Analysis
+
+## Remote vs. On-Site Jobs
+
+```{python}
+fig = px.pie(df, names="REMOTE_TYPE_NAME", title="Remote vs. On-Site Jobs")
+fig.show()
+```
+
+Remote vs. On-Site Jobs Analysis
