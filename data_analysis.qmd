@@ -22,3 +22,7 @@ format:
     number-sections: true
     df-print: paged
 ---
+* Explain
++ Which columns are irrelevant or redundant?
++ Why are we removing multiple versions of NAICS/SOC codes?
++ How will this improve analysis? 
