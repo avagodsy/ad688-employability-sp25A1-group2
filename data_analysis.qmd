@@ -47,8 +47,14 @@ company.to_csv('output/company.csv', index=False)
 
 Answer the Questions
 + Which columns are irrelevant or redundant?
+# ID, URL ACTIVE_URLS, DUPLICATES, LAST_UPDATED TIMESTAMP are irrelevant or redundant columns. They are mostly used for internal tracking and don't contribute to the actual analysis of jobs, industries and occupations.
+
 + Why are we removing multiple versions of NAICS/SOC codes?
+# The dataset contains multiple versions of industry NAICS and Occupational SOC which can be risky to keep, as there is risk of duplications and inconsistent groupings.
+  
 + How will this improve analysis? 
+# This will improve the analysis by enhancing the efficiency of the data; by having smaller datasets it will be easier to process and run data. It will also improve consistency because by having only one version of the data the risk of duplication will be low.
+
 ```{python}
 columns_to_drop = [
 'ID',
@@ -91,7 +97,12 @@ data.drop(columns=columns_to_drop, inplace=True)
 ```
 
 ## Handling Missing Values
-Answer the question: How should missing values be handled? 
+
++ Answer the question: How should missing values be handled? 
+# Different strategies are used to handle missing values:
+# - Numerical fields (e.g., Salary) are filled with the median.
+# - Categorical fields (e.g., Industry) are replaced with "Unknown".
+# - Columns with >50% missing values are dropped.
 
 ```{python}
 import missingno as msno
@@ -141,4 +152,12 @@ fig = px.pie(data, names="REMOTE_TYPE_NAME", title="Remote vs. On-Site Jobs")
 fig.show()
 ```
 
-Remote vs. On-Site Jobs Analysis
++  Why these visualizations were chosen:
+
+# - We chose a bar chart for the 'Job Postings by Industry' because it makes it easy to compare job postings across different industries. Bars provides a clear ranking which is easier to interpret.
+# - For the 'Salary Distribution by Industry' we chose a Boxplot because it can show medians, outliers and summarize salary distributions. It allows for comparison between industries and detect an variability in salaries.
+# - The Pie Chart provides a clear visual of how Remote and On-site jobs are divided within a dataset.
+
++  Key insights from each graph:
+  
+# - 
