@@ -24,17 +24,23 @@ format:
     df-print: paged
 ---
 
+
 ```{python}
-from pyspark.sql import SparkSession
+import pandas as pd
 
-# Start a Spark session
-spark = SparkSession.builder.appName("JobPostingsAnalysis").getOrCreate()
+# Load the dataset
+data = pd.read_csv('data\lightcast_job_postings.csv')
+# Extract Job_Postings table
+job_postings = data[['ID', 'TITLE_RAW', 'TITLE_CLEAN', 'POSTED', 'EXPIRED',
+                     'SALARY_FROM', 'SALARY_TO', 'MIN_YEARS_EXPERIENCE',
+                     'MAX_YEARS_EXPERIENCE', 'SKILLS', 'SPECIALIZED_SKILLS',
+                     'SOFTWARE_SKILLS', 'EMPLOYMENT_TYPE']]
+job_postings.to_csv('output/job_postings.csv', index=False)
 
-# Load the CSV file into a Spark DataFrame
-df = spark.read.option("header", "true").option("inferSchema", "true").option("multiLine","true").option("escape", "\"").csv("/lightcast_job_postings.csv")
-
-# Show schema
-df.printSchema()
+# Extract Company table
+company= data[['COMPANY_NAME', 'COMPANY_RAW', 'COMPANY_IS_STAFFING']]
+company["COMPANY_ID"] = company.index
+company.to_csv('output/company.csv', index=False)
 ```
 
 ## Dropping Unncessary Columns
@@ -45,11 +51,43 @@ Answer the Questions
 + How will this improve analysis? 
 ```{python}
 columns_to_drop = [
-    "ID", "URL", "ACTIVE_URLS", "DUPLICATES", "LAST_UPDATED_TIMESTAMP",
-    "NAICS2", "NAICS3", "NAICS4", "NAICS5", "NAICS6",
-    "SOC_2", "SOC_3", "SOC_5"
+'ID',
+'LAST_UPDATED_TIMESTAMP',
+'DUPLICATES',
+'NAICS2',
+'NAICS2_NAME',
+'NAICS3',
+'NAICS3_NAME',
+'NAICS4',
+'NAICS4_NAME',
+'NAICS5',
+'NAICS5_NAME',
+'NAICS6',
+'NAICS6_NAME',
+'SOC_2021_2',
+'SOC_2021_2_NAME',
+'SOC_2021_3',
+'SOC_2021_3_NAME',
+'SOC_2021_4',
+'SOC_2021_4_NAME',
+'SOC_2',
+'SOC_2_NAME',
+'SOC_3',
+'SOC_3_NAME',
+'SOC_4',
+'SOC_4_NAME',
+'SOC_5',
+'SOC_5_NAME',
+'NAICS_2022_2',
+'NAICS_2022_2_NAME',
+'NAICS_2022_3',
+'NAICS_2022_3_NAME',
+'NAICS_2022_4',
+'NAICS_2022_4_NAME',
+'NAICS_2022_5',
+'NAICS_2022_5_NAME'
 ]
-df.drop(columns=columns_to_drop, inplace=True)
+data.drop(columns=columns_to_drop, inplace=True)
 ```
 
 ## Handling Missing Values
@@ -57,25 +95,22 @@ Answer the question: How should missing values be handled?
 
 ```{python}
 import missingno as msno
+import matplotlib.pyplot as plt
 
 # Visualize missing data
-msno.heatmap(df)
+msno.heatmap(data)
 plt.title("Missing Values Heatmap")
 plt.show()
 
-# Drop columns with >50% missing values
-df.dropna(thresh=len(df) * 0.5, axis=1, inplace=True)
-
 # Fill missing values
-df["Salary"].fillna(df["Salary"].median(), inplace=True)
-df["Industry"].fillna("Unknown", inplace=True)
-
+data["SALARY"].fillna(data["SALARY"].median(), inplace=True)
+data["NAICS_2022_6_NAME"].fillna("Unknown", inplace=True)
 ```
 
 ## Remove Duplicates 
 
 ```{python}
-df = df.drop_duplicates(subset=["TITLE", "COMPANY", "LOCATION", "POSTED"], keep="first")
+data = data.drop_duplicates(subset=["TITLE", "COMPANY", "LOCATION", "POSTED"], keep="first")
 ```
 
 # Exploratory Data Analysis 
@@ -83,7 +118,8 @@ df = df.drop_duplicates(subset=["TITLE", "COMPANY", "LOCATION", "POSTED"], keep=
 ## Job Postings by Industry
 
 ```{python}
-fig = px.bar(df["Industry"].value_counts(), title="Job Postings by Industry")
+import plotly.express as px
+fig = px.bar(data["NAICS_2022_6_NAME"].value_counts(), title="Job Postings by Industry")
 fig.show()
 ```
 
@@ -92,7 +128,7 @@ Job Posting Anaylsis
 ## Salary Distribution by Industry
 
 ```{python}
-fig = px.box(df, x="Industry", y="Salary", title="Salary Distribution by Industry")
+fig = px.box(data, x="NAICS_2022_6_NAME", y="SALARY", title="Salary Distribution by Industry")
 fig.show()
 ```
 
@@ -101,7 +137,7 @@ Job Posting Analysis
 ## Remote vs. On-Site Jobs
 
 ```{python}
-fig = px.pie(df, names="REMOTE_TYPE_NAME", title="Remote vs. On-Site Jobs")
+fig = px.pie(data, names="REMOTE_TYPE_NAME", title="Remote vs. On-Site Jobs")
 fig.show()
 ```
 
