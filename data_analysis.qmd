@@ -36,16 +36,15 @@ data = pd.read_csv('data\lightcast_job_postings.csv')
 
 ## Dropping Unncessary Columns
 
-# Answer the Questions
+- **Which columns are irrelevant or redundant?**  
+  ID, URL, ACTIVE_URLS, DUPLICATES, LAST_UPDATED TIMESTAMP are irrelevant or redundant columns. They are mostly used for internal tracking and don't contribute to the actual analysis of jobs, industries, and occupations.
 
-# Which columns are irrelevant or redundant?
-# ID, URL ACTIVE_URLS, DUPLICATES, LAST_UPDATED TIMESTAMP are irrelevant or redundant columns. They are mostly used for internal tracking and don't contribute to the actual analysis of jobs, industries and occupations.
+- **Why are we removing multiple versions of NAICS/SOC codes?**  
+  The dataset contains multiple versions of industry NAICS and Occupational SOC which can be risky to keep, as there is risk of duplications and inconsistent groupings.
 
-# Why are we removing multiple versions of NAICS/SOC codes?
-# The dataset contains multiple versions of industry NAICS and Occupational SOC which can be risky to keep, as there is risk of duplications and inconsistent groupings.
-  
-# How will this improve analysis? 
-# This will improve the analysis by enhancing the efficiency of the data; by having smaller datasets it will be easier to process and run data. It will also improve consistency because by having only one version of the data the risk of duplication will be low.
+- **How will this improve analysis?**  
+  This will improve the analysis by enhancing the efficiency of the data; by having smaller datasets it will be easier to process and run data. It will also improve consistency because by having only one version of the data the risk of duplication will be low.
+
 
 ```{python}
 columns_to_drop = [
@@ -68,12 +67,11 @@ data.drop(columns=columns_to_drop, inplace=True)
 
 ## Handling Missing Values
 
-#  Answer the question: How should missing values be handled? 
+- **Answer the question: How should missing values be handled?**
 
-# Different strategies are used to handle missing values:
-# - Numerical fields (e.g., Salary) are filled with the median.
-# - Categorical fields (e.g., Industry) are replaced with "Unknown".
-# - Columns with >50% missing values are dropped.
+  - Numerical fields (e.g., Salary) are filled with the median.
+  - Categorical fields (e.g., Industry) are replaced with "Unknown".
+  - Columns with >50% missing values are dropped.
 
 ```{python}
 import missingno as msno
@@ -87,6 +85,10 @@ data["NAICS_2022_6_NAME"].fillna("Unknown", inplace=True)
 data["REMOTE_TYPE_NAME"].fillna("None, inplace=True")
 
 data.rename(columns={'NAICS_2022_6_NAME': 'INDUSTRY'}, inplace=True)
+```
+```{python}
+
+data.dropna(thresh=len(data) * 0.5, axis=1, inplace=True)
 
 # Visualize missing data
 msno.heatmap(data)
@@ -94,7 +96,7 @@ plt.title("Missing Values Heatmap")
 plt.show()
 ```
 
-# The heatmap shows a few missing values in the dataset. In this dataset most fields cluster near 1. The value 1 (dark blue) means the two columns have missing values together. 0.0 value (white) suggest there is no relationship.
+The heatmap shows a few missing values in the dataset. In this dataset most fields cluster near 1. The value 1 (dark blue) means the two columns have missing values together. 0.0 value (white) suggest there is no relationship.
 
 ## Remove Duplicates 
 
@@ -121,8 +123,6 @@ plt.tight_layout()
 plt.show()
 ```
 
-### Job Posting Anaylsis 
-
 ## Salary Distribution by Industry
 
 ```{python}
@@ -142,8 +142,6 @@ plt.tight_layout()
 plt.show()
 ```
 
-### Salary Analysis
-
 ## Remote vs. On-Site Jobs
 
 ```{python}
@@ -155,17 +153,30 @@ plt.title("Remote vs. On-Site Jobs", fontsize=16, pad=20)
 plt.show()
 ```
 
-#  Why these visualizations were chosen:
+## Why these visualizations were chosen
 
-# - We chose a bar chart for the 'Job Postings by Industry' because it makes it easy to compare job postings across different industries. Bars provides a clear ranking which is easier to interpret.
-# - For the 'Salary Distribution by Industry' we chose a Boxplot because it can show medians, outliers and summarize salary distributions. It allows for comparison between industries and detect an variability in salaries.
-# - The Pie Chart provides a clear visual of how Remote and On-site jobs are divided within a dataset.
+- **Bar Chart: Job Postings by Industry**  
+  - Makes it easy to compare job postings across different industries.  
+  - Provides a clear ranking that is simple to interpret.
 
+- **Boxplot: Salary Distribution by Industry**  
+  - Shows medians, outliers, and summarizes salary distributions.  
+  - Allows for comparisons between industries and helps detect salary variability.
 
-#  Key insights from each graph:
-  
-# - The bar chart ranks the top 25 industries by job-posting volume. The chart has a skewed distribution, and it shows that demand is concentrated in technology and professional services. A huge chunk of 'unclassified industry' job postings suggest that there are a large number of jobs posted which are not mapped to any industry.
+- **Pie Chart: Job Location Types**  
+  - Provides a clear visual breakdown of remote versus on-site jobs within the dataset.
 
-# - The boxplot of 'Salary Distribution by Industry' suggest that salaries across the 40 industries skew high, with medians generally in $120k to $170k range. The industries that have higher medians and greater dispersions includes software/ semiconductors, and consulting. Several industries have wide IQRs and many upper outliers. Similarly, some industries have less variability in pay which means that the pay is more standardized.
+## Key insights from each graph
 
-# - The pie chart shows that 17% remote jobs, 3.1% are hybrid jobs and 1.6% are not remote jobs and large number of job postings do not specify if the job is remote or on-site. 
+- **Bar Chart: Top 25 Industries by Job-Posting Volume**  
+  - The distribution is skewed, showing demand concentrated in technology and professional services.  
+  - A large portion of "unclassified industry" job postings suggests many jobs are not mapped to any industry.
+
+- **Boxplot: Salary Distribution by Industry**  
+  - Salaries across the 40 industries skew high, with medians generally in the $120k–$170k range.  
+  - Industries with higher medians and greater dispersions include software/semiconductors and consulting.  
+  - Several industries have wide IQRs and many upper outliers, while some have less variability, indicating standardized pay.
+
+- **Pie Chart: Job Location Types**  
+  - 17% of jobs are remote, 3.1% are hybrid, and 1.6% are not remote.  
+  - A large number of job postings do not specify whether the job is remote or on-site.

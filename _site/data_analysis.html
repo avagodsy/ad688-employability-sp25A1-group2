@@ -163,19 +163,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#importing-dataset-using-pandas" id="toc-importing-dataset-using-pandas" class="nav-link" data-scroll-target="#importing-dataset-using-pandas"><span class="header-section-number">1.1</span> Importing Dataset Using Pandas</a></li>
   <li><a href="#dropping-unncessary-columns" id="toc-dropping-unncessary-columns" class="nav-link" data-scroll-target="#dropping-unncessary-columns"><span class="header-section-number">1.2</span> Dropping Unncessary Columns</a></li>
   <li><a href="#handling-missing-values" id="toc-handling-missing-values" class="nav-link" data-scroll-target="#handling-missing-values"><span class="header-section-number">1.3</span> Handling Missing Values</a></li>
-  <li><a href="#removing-duplicates" id="toc-removing-duplicates" class="nav-link" data-scroll-target="#removing-duplicates"><span class="header-section-number">1.4</span> Removing Duplicates</a></li>
-  <li><a href="#job-postings-by-industry" id="toc-job-postings-by-industry" class="nav-link" data-scroll-target="#job-postings-by-industry"><span class="header-section-number">1.5</span> Job Postings by Industry</a>
-  <ul class="collapse">
-  <li><a href="#job-posting-anaylsis" id="toc-job-posting-anaylsis" class="nav-link" data-scroll-target="#job-posting-anaylsis"><span class="header-section-number">1.5.1</span> Job Posting Anaylsis</a></li>
-  </ul></li>
-  <li><a href="#salary-distribution-by-industry" id="toc-salary-distribution-by-industry" class="nav-link" data-scroll-target="#salary-distribution-by-industry"><span class="header-section-number">1.6</span> Salary Distribution by Industry</a>
-  <ul class="collapse">
-  <li><a href="#salary-analysis" id="toc-salary-analysis" class="nav-link" data-scroll-target="#salary-analysis"><span class="header-section-number">1.6.1</span> Salary Analysis</a></li>
-  </ul></li>
-  <li><a href="#remote-vs.-on-site-jobs" id="toc-remote-vs.-on-site-jobs" class="nav-link" data-scroll-target="#remote-vs.-on-site-jobs"><span class="header-section-number">1.7</span> Remote vs.&nbsp;On-Site Jobs</a>
-  <ul class="collapse">
-  <li><a href="#remote-vs.-on-site-jobs-analysis" id="toc-remote-vs.-on-site-jobs-analysis" class="nav-link" data-scroll-target="#remote-vs.-on-site-jobs-analysis"><span class="header-section-number">1.7.1</span> Remote vs.&nbsp;On-Site Jobs Analysis</a></li>
-  </ul></li>
+  <li><a href="#remove-duplicates" id="toc-remove-duplicates" class="nav-link" data-scroll-target="#remove-duplicates"><span class="header-section-number">1.4</span> Remove Duplicates</a></li>
+  <li><a href="#job-postings-by-industry" id="toc-job-postings-by-industry" class="nav-link" data-scroll-target="#job-postings-by-industry"><span class="header-section-number">1.5</span> Job Postings by Industry</a></li>
+  <li><a href="#salary-distribution-by-industry" id="toc-salary-distribution-by-industry" class="nav-link" data-scroll-target="#salary-distribution-by-industry"><span class="header-section-number">1.6</span> Salary Distribution by Industry</a></li>
+  <li><a href="#remote-vs.-on-site-jobs" id="toc-remote-vs.-on-site-jobs" class="nav-link" data-scroll-target="#remote-vs.-on-site-jobs"><span class="header-section-number">1.7</span> Remote vs.&nbsp;On-Site Jobs</a></li>
+  <li><a href="#why-these-visualizations-were-chosen" id="toc-why-these-visualizations-were-chosen" class="nav-link" data-scroll-target="#why-these-visualizations-were-chosen"><span class="header-section-number">1.8</span> Why these visualizations were chosen</a></li>
+  <li><a href="#key-insights-from-each-graph" id="toc-key-insights-from-each-graph" class="nav-link" data-scroll-target="#key-insights-from-each-graph"><span class="header-section-number">1.9</span> Key insights from each graph</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -236,7 +229,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1 data-number="1"><span class="header-section-number">1</span> Exploratory Data Analysis</h1>
 <section id="importing-dataset-using-pandas" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="importing-dataset-using-pandas"><span class="header-section-number">1.1</span> Importing Dataset Using Pandas</h2>
-<div id="1dc8f582" class="cell" data-execution_count="1">
+<div id="00554a33" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the dataset</span></span>
@@ -250,11 +243,11 @@ invalid escape sequence '\l'
 
 invalid escape sequence '\l'
 
-C:\Users\jt-la\AppData\Local\Temp\ipykernel_42408\3126061157.py:4: SyntaxWarning:
+C:\Users\jt-la\AppData\Local\Temp\ipykernel_7824\3126061157.py:4: SyntaxWarning:
 
 invalid escape sequence '\l'
 
-C:\Users\jt-la\AppData\Local\Temp\ipykernel_42408\3126061157.py:4: DtypeWarning:
+C:\Users\jt-la\AppData\Local\Temp\ipykernel_7824\3126061157.py:4: DtypeWarning:
 
 Columns (19,30) have mixed types. Specify dtype option on import or set low_memory=False.
 </code></pre>
@@ -263,77 +256,44 @@ Columns (19,30) have mixed types. Specify dtype option on import or set low_memo
 </section>
 <section id="dropping-unncessary-columns" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="dropping-unncessary-columns"><span class="header-section-number">1.2</span> Dropping Unncessary Columns</h2>
-<p>Answer the Questions + Which columns are irrelevant or redundant? + Why are we removing multiple versions of NAICS/SOC codes? + How will this improve analysis?</p>
-<div id="06e2e603" class="cell" data-execution_count="2">
+<ul>
+<li><p><strong>Which columns are irrelevant or redundant?</strong><br>
+ID, URL, ACTIVE_URLS, DUPLICATES, LAST_UPDATED TIMESTAMP are irrelevant or redundant columns. They are mostly used for internal tracking and don’t contribute to the actual analysis of jobs, industries, and occupations.</p></li>
+<li><p><strong>Why are we removing multiple versions of NAICS/SOC codes?</strong><br>
+The dataset contains multiple versions of industry NAICS and Occupational SOC which can be risky to keep, as there is risk of duplications and inconsistent groupings.</p></li>
+<li><p><strong>How will this improve analysis?</strong><br>
+This will improve the analysis by enhancing the efficiency of the data; by having smaller datasets it will be easier to process and run data. It will also improve consistency because by having only one version of the data the risk of duplication will be low.</p></li>
+</ul>
+<div id="3b74caa0" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>columns_to_drop <span class="op">=</span> [</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="st">'LAST_UPDATED_DATE'</span>,</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="st">'LAST_UPDATED_TIMESTAMP'</span>,</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="st">'EXPIRED'</span>,</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="st">'ACTIVE_SOURCES_INFO'</span>,</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="st">'TITLE_RAW'</span>,</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="st">'BODY'</span>,</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="st">'COMPANY_NAME'</span>,</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="st">'ORIGINAL_PAY_PERIOD'</span>,</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="st">'SALARY_TO'</span>,</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="st">'SALARY_FROM'</span>,</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="st">'NAICS2'</span>,</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="st">'NAICS2_NAME'</span>,</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="st">'NAICS3'</span>,</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="st">'NAICS3_NAME'</span>,</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="st">'NAICS4'</span>,</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="st">'NAICS4_NAME'</span>,</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="st">'NAICS5'</span>,</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="st">'NAICS5_NAME'</span>,</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="st">'NAICS6'</span>,</span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="st">'NAICS6_NAME'</span>,</span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="st">'ONET'</span>,</span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="st">'ONET_NAME'</span>,</span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="st">'ONET_2019'</span>,</span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="st">'ONET_2019_NAME'</span>,</span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="st">'CIP6'</span>,</span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="st">'CIP6_NAME'</span>,</span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="st">'CIP4'</span>,</span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="st">'CIP4_NAME'</span>,</span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="st">'CIP2'</span>,</span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="st">'CIP2_NAME'</span>,</span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="st">'SOC_2021_2'</span>,</span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="st">'SOC_2021_2_NAME'</span>,</span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="st">'SOC_2021_3'</span>,</span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="st">'SOC_2021_3_NAME'</span>,</span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="st">'SOC_2021_4'</span>,</span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="st">'SOC_2021_4_NAME'</span>,</span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="st">'LOT_OCCUPATION_GROUP_NAME'</span>,</span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="st">'LOT_V6_SPECIALIZED_OCCUPATION'</span>,</span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="st">'LOT_V6_SPECIALIZED_OCCUPATION_NAME'</span>,</span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a><span class="st">'LOT_V6_OCCUPATION'</span>,</span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a><span class="st">'LOT_V6_OCCUPATION_NAME'</span>,</span>
-<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a><span class="st">'LOT_V6_OCCUPATION_GROUP'</span>,</span>
-<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a><span class="st">'LOT_V6_OCCUPATION_GROUP_NAME'</span>,</span>
-<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a><span class="st">'LOT_V6_CAREER_AREA'</span>,</span>
-<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a><span class="st">'LOT_V6_CAREER_AREA_NAME'</span>,</span>
-<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a><span class="st">'SOC_2'</span>,</span>
-<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a><span class="st">'SOC_2_NAME'</span>,</span>
-<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a><span class="st">'SOC_3'</span>,</span>
-<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a><span class="st">'SOC_3_NAME'</span>,</span>
-<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a><span class="st">'SOC_4'</span>,</span>
-<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a><span class="st">'SOC_4_NAME'</span>,</span>
-<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a><span class="st">'NAICS_2022_2'</span>,</span>
-<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a><span class="st">'NAICS_2022_2_NAME'</span>,</span>
-<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a><span class="st">'NAICS_2022_3'</span>,</span>
-<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a><span class="st">'NAICS_2022_3_NAME'</span>,</span>
-<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a><span class="st">'NAICS_2022_4'</span>,</span>
-<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a><span class="st">'NAICS_2022_4_NAME'</span>,</span>
-<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a><span class="st">'NAICS_2022_5'</span>,</span>
-<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a><span class="st">'NAICS_2022_5_NAME'</span>,</span>
-<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a><span class="st">'DUPLICATES'</span></span>
-<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>data.drop(columns<span class="op">=</span>columns_to_drop, inplace<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="st">'LAST_UPDATED_DATE'</span>, <span class="st">'LAST_UPDATED_TIMESTAMP'</span>, <span class="st">'DUPLICATES'</span>, <span class="st">'EXPIRED'</span>, <span class="st">'ACTIVE_SOURCES_INFO'</span>, <span class="st">'TITLE_RAW'</span>,<span class="st">'BODY'</span>,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="st">'COMPANY_NAME'</span>, <span class="st">'COMPANY_RAW'</span>, <span class="st">'COMPANY_IS_STAFFING'</span>, <span class="st">'EDUCATION_LEVELS'</span>, <span class="st">'EDUCATION_LEVELS_NAME'</span>, <span class="st">'MIN_EDULEVELS'</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="st">'MIN_EDULEVELS_NAME'</span>, <span class="st">'MAX_EDULEVELS'</span>, <span class="st">'MAX_EDULEVELS_NAME'</span>, <span class="st">'MIN_YEARS_EXPERIENCE'</span>, <span class="st">'MAX_YEARS_EXPERIENCE'</span>, <span class="st">'IS_INTERNSHIP'</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="st">'ORIGINAL_PAY_PERIOD'</span>, <span class="st">'SALARY_TO'</span>, <span class="st">'SALARY_FROM'</span>, <span class="st">'COUNTY_OUTGOING'</span>, <span class="st">'COUNTY_NAME_OUTGOING'</span>, <span class="st">'COUNTY_INCOMING'</span>, <span class="st">'COUNTY_NAME_INCOMING'</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="st">'MSA_OUTGOING'</span>, <span class="st">'MSA_NAME_OUTGOING'</span>,<span class="st">'MSA_INCOMING'</span>, <span class="st">'MSA_NAME_INCOMING'</span>, <span class="st">'NAICS2'</span>, <span class="st">'NAICS2_NAME'</span>, <span class="st">'NAICS3'</span>, <span class="st">'NAICS3_NAME'</span>, <span class="st">'NAICS4'</span>,<span class="st">'NAICS4_NAME'</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="st">'NAICS5'</span>, <span class="st">'NAICS5_NAME'</span>, <span class="st">'NAICS6'</span>, <span class="st">'NAICS6_NAME'</span>, <span class="st">'ONET'</span>, <span class="st">'ONET_NAME'</span>, <span class="st">'ONET_2019'</span>, <span class="st">'ONET_2019_NAME'</span>, <span class="st">'CIP6'</span>, <span class="st">'CIP6_NAME'</span>, <span class="st">'CIP4'</span>, <span class="st">'CIP4_NAME'</span>,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="st">'CIP2'</span>, <span class="st">'CIP2_NAME'</span>, <span class="st">'SOC_2021_2'</span>, <span class="st">'SOC_2021_2_NAME'</span>, <span class="st">'SOC_2021_3'</span>, <span class="st">'SOC_2021_3_NAME'</span>, <span class="st">'SOC_2021_4'</span>, <span class="st">'SOC_2021_4_NAME'</span>, <span class="st">'LOT_OCCUPATION_GROUP_NAME'</span>,</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="st">'LOT_V6_SPECIALIZED_OCCUPATION'</span>, <span class="st">'LOT_V6_SPECIALIZED_OCCUPATION_NAME'</span>, <span class="st">'LOT_V6_OCCUPATION'</span>, <span class="st">'LOT_V6_OCCUPATION_NAME'</span>, <span class="st">'LOT_V6_OCCUPATION_GROUP'</span>,</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="st">'LOT_V6_OCCUPATION_GROUP_NAME'</span>, <span class="st">'LOT_V6_CAREER_AREA'</span>, <span class="st">'LOT_V6_CAREER_AREA_NAME'</span>, <span class="st">'SOC_2'</span>, <span class="st">'SOC_2_NAME'</span>, <span class="st">'SOC_3'</span>, <span class="st">'SOC_3_NAME'</span>, <span class="st">'SOC_4'</span>, <span class="st">'SOC_4_NAME'</span>,</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="st">'NAICS_2022_2'</span>, <span class="st">'NAICS_2022_2_NAME'</span>, <span class="st">'NAICS_2022_3'</span>, <span class="st">'NAICS_2022_3_NAME'</span>, <span class="st">'NAICS_2022_4'</span>, <span class="st">'NAICS_2022_4_NAME'</span>, <span class="st">'NAICS_2022_5'</span>, <span class="st">'NAICS_2022_5_NAME'</span>,</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="st">'DURATION'</span>, <span class="st">'SOURCE_TYPES'</span>, <span class="st">'SOURCES'</span>, <span class="st">'URL'</span>, <span class="st">'ACTIVE_URLS'</span>, <span class="st">'MODELED_EXPIRED'</span>, <span class="st">'MODELED_DURATION'</span>, <span class="st">'LOT_CAREER_AREA'</span>, <span class="st">'LOT_CAREER_AREA_NAME'</span>,</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="st">'LOT_OCCUPATION'</span>, <span class="st">'LOT_OCCUPATION_NAME'</span>, <span class="st">'LOT_SPECIALIZED_OCCUPATION'</span>, <span class="st">'LOT_SPECIALIZED_OCCUPATION_NAME'</span>, <span class="st">'LOT_OCCUPATION_GROUP'</span>, <span class="st">'LIGHTCAST_SECTORS'</span>,</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="st">'LIGHTCAST_SECTORS_NAME'</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>data.drop(columns<span class="op">=</span>columns_to_drop, inplace<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="handling-missing-values" class="level2" data-number="1.3">
 <h2 data-number="1.3" class="anchored" data-anchor-id="handling-missing-values"><span class="header-section-number">1.3</span> Handling Missing Values</h2>
-<p>Answer the question: How should missing values be handled?</p>
-<div id="bfbbc36e" class="cell" data-execution_count="3">
+<ul>
+<li><p><strong>Answer the question: How should missing values be handled?</strong></p>
+<ul>
+<li>Numerical fields (e.g., Salary) are filled with the median.</li>
+<li>Categorical fields (e.g., Industry) are replaced with “Unknown”.</li>
+<li>Columns with &gt;50% missing values are dropped.</li>
+</ul></li>
+</ul>
+<div id="7c86437c" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> missingno <span class="im">as</span> msno</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -344,14 +304,9 @@ Columns (19,30) have mixed types. Specify dtype option on import or set low_memo
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>data[<span class="st">"NAICS_2022_6_NAME"</span>].fillna(<span class="st">"Unknown"</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>data[<span class="st">"REMOTE_TYPE_NAME"</span>].fillna(<span class="st">"None, inplace=True"</span>)</span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>data.rename(columns<span class="op">=</span>{<span class="st">'NAICS_2022_6_NAME'</span>: <span class="st">'INDUSTRY'</span>}, inplace<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize missing data</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>msno.heatmap(data)</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Missing Values Heatmap"</span>)</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>data.rename(columns<span class="op">=</span>{<span class="st">'NAICS_2022_6_NAME'</span>: <span class="st">'INDUSTRY'</span>}, inplace<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>C:\Users\jt-la\AppData\Local\Temp\ipykernel_42408\950183750.py:7: FutureWarning:
+<pre><code>C:\Users\jt-la\AppData\Local\Temp\ipykernel_7824\1830881447.py:7: FutureWarning:
 
 A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.
 The behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.
@@ -360,7 +315,7 @@ For example, when doing 'df[col].method(value, inplace=True)', try using 'df.met
 
 
 
-C:\Users\jt-la\AppData\Local\Temp\ipykernel_42408\950183750.py:8: FutureWarning:
+C:\Users\jt-la\AppData\Local\Temp\ipykernel_7824\1830881447.py:8: FutureWarning:
 
 A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.
 The behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.
@@ -370,97 +325,147 @@ For example, when doing 'df[col].method(value, inplace=True)', try using 'df.met
 
 </code></pre>
 </div>
+</div>
+<div id="d1c4ae1a" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>data.dropna(thresh<span class="op">=</span><span class="bu">len</span>(data) <span class="op">*</span> <span class="fl">0.5</span>, axis<span class="op">=</span><span class="dv">1</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize missing data</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>msno.heatmap(data)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Missing Values Heatmap"</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="data_analysis_files/figure-html/cell-4-output-2.png" width="1799" height="1241" class="figure-img"></p>
+<p><img src="data_analysis_files/figure-html/cell-5-output-1.png" width="1680" height="1157" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
+<p>The heatmap shows a few missing values in the dataset. In this dataset most fields cluster near 1. The value 1 (dark blue) means the two columns have missing values together. 0.0 value (white) suggest there is no relationship.</p>
 </section>
-<section id="removing-duplicates" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="removing-duplicates"><span class="header-section-number">1.4</span> Removing Duplicates</h2>
-<div id="e6e96ee0" class="cell" data-execution_count="4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data.drop_duplicates(subset<span class="op">=</span>[<span class="st">"TITLE"</span>, <span class="st">"COMPANY"</span>, <span class="st">"LOCATION"</span>, <span class="st">"POSTED"</span>], keep<span class="op">=</span><span class="st">"first"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="remove-duplicates" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="remove-duplicates"><span class="header-section-number">1.4</span> Remove Duplicates</h2>
+<div id="7954cece" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data.drop_duplicates(subset<span class="op">=</span>[<span class="st">"TITLE"</span>, <span class="st">"COMPANY"</span>, <span class="st">"LOCATION"</span>, <span class="st">"POSTED"</span>], keep<span class="op">=</span><span class="st">"first"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="job-postings-by-industry" class="level2" data-number="1.5">
 <h2 data-number="1.5" class="anchored" data-anchor-id="job-postings-by-industry"><span class="header-section-number">1.5</span> Job Postings by Industry</h2>
-<div id="9705b2d4" class="cell" data-execution_count="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>data[<span class="st">"posting_count"</span>] <span class="op">=</span> data[<span class="st">"ID"</span>]. groupby(data[<span class="st">"INDUSTRY"</span>]).transform(<span class="st">"count"</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>industry_summary <span class="op">=</span> data.groupby(<span class="st">"INDUSTRY"</span>)[<span class="st">"posting_count"</span>].first().sort_values(ascending<span class="op">=</span><span class="va">False</span>).head(<span class="dv">25</span>)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">10</span>))</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>sns.barplot(x<span class="op">=</span>industry_summary.values, y<span class="op">=</span>industry_summary.index, orient<span class="op">=</span><span class="st">'h'</span>)</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Top 25 Job Postings by Industry"</span>, fontsize<span class="op">=</span><span class="dv">16</span>, pad<span class="op">=</span><span class="dv">20</span>)</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Number of Job Postings"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Industry"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="98bec602" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>data[<span class="st">"posting_count"</span>] <span class="op">=</span> data[<span class="st">"ID"</span>]. groupby(data[<span class="st">"INDUSTRY"</span>]).transform(<span class="st">"count"</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>industry_summary <span class="op">=</span> data.groupby(<span class="st">"INDUSTRY"</span>)[<span class="st">"posting_count"</span>].first().sort_values(ascending<span class="op">=</span><span class="va">False</span>).head(<span class="dv">25</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">10</span>))</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>sns.barplot(x<span class="op">=</span>industry_summary.values, y<span class="op">=</span>industry_summary.index, orient<span class="op">=</span><span class="st">'h'</span>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Top 25 Job Postings by Industry"</span>, fontsize<span class="op">=</span><span class="dv">16</span>, pad<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Number of Job Postings"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Industry"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="data_analysis_files/figure-html/cell-6-output-1.png" width="1138" height="951" class="figure-img"></p>
+<p><img src="data_analysis_files/figure-html/cell-7-output-1.png" width="1138" height="951" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<section id="job-posting-anaylsis" class="level3" data-number="1.5.1">
-<h3 data-number="1.5.1" class="anchored" data-anchor-id="job-posting-anaylsis"><span class="header-section-number">1.5.1</span> Job Posting Anaylsis</h3>
-</section>
 </section>
 <section id="salary-distribution-by-industry" class="level2" data-number="1.6">
 <h2 data-number="1.6" class="anchored" data-anchor-id="salary-distribution-by-industry"><span class="header-section-number">1.6</span> Salary Distribution by Industry</h2>
-<div id="c13203f8" class="cell" data-execution_count="6">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>data[<span class="st">"AVERAGE_INDUSTRY_SALARY"</span>] <span class="op">=</span> data[<span class="st">"SALARY"</span>]. groupby(data[<span class="st">"INDUSTRY"</span>]).transform(<span class="st">"mean"</span>).<span class="bu">round</span>()</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">8</span>))</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>sns.boxplot(data<span class="op">=</span>data, x<span class="op">=</span><span class="st">"INDUSTRY"</span>, y<span class="op">=</span><span class="st">"SALARY"</span>)</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Salary Distribution by Industry"</span>, fontsize<span class="op">=</span><span class="dv">16</span>, pad<span class="op">=</span><span class="dv">20</span>)</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Industry"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Salary"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>plt.xticks(rotation<span class="op">=</span><span class="dv">45</span>, ha<span class="op">=</span><span class="st">'right'</span>)</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="c1ed2afe" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>data[<span class="st">"AVERAGE_INDUSTRY_SALARY"</span>] <span class="op">=</span> data[<span class="st">"SALARY"</span>]. groupby(data[<span class="st">"INDUSTRY"</span>]).transform(<span class="st">"mean"</span>).<span class="bu">round</span>()</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>top_40_industries <span class="op">=</span> data.groupby(<span class="st">"INDUSTRY"</span>)[<span class="st">"AVERAGE_INDUSTRY_SALARY"</span>].first().sort_values(ascending<span class="op">=</span><span class="va">False</span>).head(<span class="dv">40</span>).index</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>filtered_data <span class="op">=</span> data[data[<span class="st">"INDUSTRY"</span>].isin(top_40_industries)]</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">20</span>, <span class="dv">10</span>))</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>sns.boxplot(data<span class="op">=</span>filtered_data, x<span class="op">=</span><span class="st">"INDUSTRY"</span>, y<span class="op">=</span><span class="st">"SALARY"</span>, </span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>            order<span class="op">=</span>top_40_industries)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Salary Distribution by Industry (Top 40 by Average Salary)"</span>, fontsize<span class="op">=</span><span class="dv">16</span>, pad<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Industry"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Salary"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>plt.xticks(rotation<span class="op">=</span><span class="dv">45</span>, ha<span class="op">=</span><span class="st">'right'</span>)</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="data_analysis_files/figure-html/cell-7-output-1.png" width="1442" height="753" class="figure-img"></p>
+<p><img src="data_analysis_files/figure-html/cell-8-output-1.png" width="1906" height="945" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<section id="salary-analysis" class="level3" data-number="1.6.1">
-<h3 data-number="1.6.1" class="anchored" data-anchor-id="salary-analysis"><span class="header-section-number">1.6.1</span> Salary Analysis</h3>
-</section>
 </section>
 <section id="remote-vs.-on-site-jobs" class="level2" data-number="1.7">
 <h2 data-number="1.7" class="anchored" data-anchor-id="remote-vs.-on-site-jobs"><span class="header-section-number">1.7</span> Remote vs.&nbsp;On-Site Jobs</h2>
-<div id="c5b67892" class="cell" data-execution_count="7">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>remote_counts <span class="op">=</span> data[<span class="st">"REMOTE_TYPE_NAME"</span>].value_counts()</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">8</span>))</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>plt.pie(remote_counts.values, labels<span class="op">=</span>remote_counts.index, autopct<span class="op">=</span><span class="st">'</span><span class="sc">%1.1f%%</span><span class="st">'</span>)</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Remote vs. On-Site Jobs"</span>, fontsize<span class="op">=</span><span class="dv">16</span>, pad<span class="op">=</span><span class="dv">20</span>)</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="53b90ce5" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>remote_counts <span class="op">=</span> data[<span class="st">"REMOTE_TYPE_NAME"</span>].value_counts()</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">8</span>))</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>plt.pie(remote_counts.values, labels<span class="op">=</span>remote_counts.index, autopct<span class="op">=</span><span class="st">'</span><span class="sc">%1.1f%%</span><span class="st">'</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Remote vs. On-Site Jobs"</span>, fontsize<span class="op">=</span><span class="dv">16</span>, pad<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="data_analysis_files/figure-html/cell-8-output-1.png" width="670" height="654" class="figure-img"></p>
+<p><img src="data_analysis_files/figure-html/cell-9-output-1.png" width="670" height="654" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<section id="remote-vs.-on-site-jobs-analysis" class="level3" data-number="1.7.1">
-<h3 data-number="1.7.1" class="anchored" data-anchor-id="remote-vs.-on-site-jobs-analysis"><span class="header-section-number">1.7.1</span> Remote vs.&nbsp;On-Site Jobs Analysis</h3>
-
-
 </section>
+<section id="why-these-visualizations-were-chosen" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="why-these-visualizations-were-chosen"><span class="header-section-number">1.8</span> Why these visualizations were chosen</h2>
+<ul>
+<li><strong>Bar Chart: Job Postings by Industry</strong>
+<ul>
+<li>Makes it easy to compare job postings across different industries.<br>
+</li>
+<li>Provides a clear ranking that is simple to interpret.</li>
+</ul></li>
+<li><strong>Boxplot: Salary Distribution by Industry</strong>
+<ul>
+<li>Shows medians, outliers, and summarizes salary distributions.<br>
+</li>
+<li>Allows for comparisons between industries and helps detect salary variability.</li>
+</ul></li>
+<li><strong>Pie Chart: Job Location Types</strong>
+<ul>
+<li>Provides a clear visual breakdown of remote versus on-site jobs within the dataset.</li>
+</ul></li>
+</ul>
+</section>
+<section id="key-insights-from-each-graph" class="level2" data-number="1.9">
+<h2 data-number="1.9" class="anchored" data-anchor-id="key-insights-from-each-graph"><span class="header-section-number">1.9</span> Key insights from each graph</h2>
+<ul>
+<li><strong>Bar Chart: Top 25 Industries by Job-Posting Volume</strong>
+<ul>
+<li>The distribution is skewed, showing demand concentrated in technology and professional services.<br>
+</li>
+<li>A large portion of “unclassified industry” job postings suggests many jobs are not mapped to any industry.</li>
+</ul></li>
+<li><strong>Boxplot: Salary Distribution by Industry</strong>
+<ul>
+<li>Salaries across the 40 industries skew high, with medians generally in the $120k–$170k range.<br>
+</li>
+<li>Industries with higher medians and greater dispersions include software/semiconductors and consulting.<br>
+</li>
+<li>Several industries have wide IQRs and many upper outliers, while some have less variability, indicating standardized pay.</li>
+</ul></li>
+<li><strong>Pie Chart: Job Location Types</strong>
+<ul>
+<li>17% of jobs are remote, 3.1% are hybrid, and 1.6% are not remote.<br>
+</li>
+<li>A large number of job postings do not specify whether the job is remote or on-site.</li>
+</ul></li>
+</ul>
+
+
 </section>
 </section>
 
