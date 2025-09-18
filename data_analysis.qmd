@@ -24,6 +24,8 @@ format:
     df-print: paged
 ---
 
+# Exploratory Data Analysis 
+
 ## Importing Dataset Using Pandas
 ```{python}
 import pandas as pd
@@ -47,67 +49,19 @@ data = pd.read_csv('data\lightcast_job_postings.csv')
 
 ```{python}
 columns_to_drop = [
-'ID',
-'LAST_UPDATED_DATE',
-'LAST_UPDATED_TIMESTAMP',
-'EXPIRED',
-'ACTIVE_SOURCES_INFO',
-'TITLE_RAW',
-'BODY',
-'COMPANY_NAME',
-'ORIGINAL_PAY_PERIOD',
-'SALARY_TO',
-'SALARY_FROM',
-'NAICS2',
-'NAICS2_NAME',
-'NAICS3',
-'NAICS3_NAME',
-'NAICS4',
-'NAICS4_NAME',
-'NAICS5',
-'NAICS5_NAME',
-'NAICS6',
-'NAICS6_NAME',
-'ONET',
-'ONET_NAME',
-'ONET_2019',
-'ONET_2019_NAME',
-'CIP6',
-'CIP6_NAME',
-'CIP4',
-'CIP4_NAME',
-'CIP2',
-'CIP2_NAME',
-'SOC_2021_2',
-'SOC_2021_2_NAME',
-'SOC_2021_3',
-'SOC_2021_3_NAME',
-'SOC_2021_4',
-'SOC_2021_4_NAME',
-'LOT_OCCUPATION_GROUP_NAME',
-'LOT_V6_SPECIALIZED_OCCUPATION',
-'LOT_V6_SPECIALIZED_OCCUPATION_NAME',
-'LOT_V6_OCCUPATION',
-'LOT_V6_OCCUPATION_NAME',
-'LOT_V6_OCCUPATION_GROUP',
-'LOT_V6_OCCUPATION_GROUP_NAME',
-'LOT_V6_CAREER_AREA',
-'LOT_V6_CAREER_AREA_NAME',
-'SOC_2',
-'SOC_2_NAME',
-'SOC_3',
-'SOC_3_NAME',
-'SOC_4',
-'SOC_4_NAME',
-'NAICS_2022_2',
-'NAICS_2022_2_NAME',
-'NAICS_2022_3',
-'NAICS_2022_3_NAME',
-'NAICS_2022_4',
-'NAICS_2022_4_NAME',
-'NAICS_2022_5',
-'NAICS_2022_5_NAME',
-'DUPLICATES'
+'LAST_UPDATED_DATE', 'LAST_UPDATED_TIMESTAMP', 'DUPLICATES', 'EXPIRED', 'ACTIVE_SOURCES_INFO', 'TITLE_RAW','BODY',
+'COMPANY_NAME', 'COMPANY_RAW', 'COMPANY_IS_STAFFING', 'EDUCATION_LEVELS', 'EDUCATION_LEVELS_NAME', 'MIN_EDULEVELS',
+'MIN_EDULEVELS_NAME', 'MAX_EDULEVELS', 'MAX_EDULEVELS_NAME', 'MIN_YEARS_EXPERIENCE', 'MAX_YEARS_EXPERIENCE', 'IS_INTERNSHIP',
+'ORIGINAL_PAY_PERIOD', 'SALARY_TO', 'SALARY_FROM', 'COUNTY_OUTGOING', 'COUNTY_NAME_OUTGOING', 'COUNTY_INCOMING', 'COUNTY_NAME_INCOMING',
+'MSA_OUTGOING', 'MSA_NAME_OUTGOING','MSA_INCOMING', 'MSA_NAME_INCOMING', 'NAICS2', 'NAICS2_NAME', 'NAICS3', 'NAICS3_NAME', 'NAICS4','NAICS4_NAME',
+'NAICS5', 'NAICS5_NAME', 'NAICS6', 'NAICS6_NAME', 'ONET', 'ONET_NAME', 'ONET_2019', 'ONET_2019_NAME', 'CIP6', 'CIP6_NAME', 'CIP4', 'CIP4_NAME',
+'CIP2', 'CIP2_NAME', 'SOC_2021_2', 'SOC_2021_2_NAME', 'SOC_2021_3', 'SOC_2021_3_NAME', 'SOC_2021_4', 'SOC_2021_4_NAME', 'LOT_OCCUPATION_GROUP_NAME',
+'LOT_V6_SPECIALIZED_OCCUPATION', 'LOT_V6_SPECIALIZED_OCCUPATION_NAME', 'LOT_V6_OCCUPATION', 'LOT_V6_OCCUPATION_NAME', 'LOT_V6_OCCUPATION_GROUP',
+'LOT_V6_OCCUPATION_GROUP_NAME', 'LOT_V6_CAREER_AREA', 'LOT_V6_CAREER_AREA_NAME', 'SOC_2', 'SOC_2_NAME', 'SOC_3', 'SOC_3_NAME', 'SOC_4', 'SOC_4_NAME',
+'NAICS_2022_2', 'NAICS_2022_2_NAME', 'NAICS_2022_3', 'NAICS_2022_3_NAME', 'NAICS_2022_4', 'NAICS_2022_4_NAME', 'NAICS_2022_5', 'NAICS_2022_5_NAME',
+'DURATION', 'SOURCE_TYPES', 'SOURCES', 'URL', 'ACTIVE_URLS', 'MODELED_EXPIRED', 'MODELED_DURATION', 'LOT_CAREER_AREA', 'LOT_CAREER_AREA_NAME',
+'LOT_OCCUPATION', 'LOT_OCCUPATION_NAME', 'LOT_SPECIALIZED_OCCUPATION', 'LOT_SPECIALIZED_OCCUPATION_NAME', 'LOT_OCCUPATION_GROUP', 'LIGHTCAST_SECTORS',
+'LIGHTCAST_SECTORS_NAME'
 ]
 data.drop(columns=columns_to_drop, inplace=True)
 ```
@@ -125,14 +79,19 @@ data.drop(columns=columns_to_drop, inplace=True)
 import missingno as msno
 import matplotlib.pyplot as plt
 
-# Visualize missing data
-msno.heatmap(data)
-plt.title("Missing Values Heatmap")
-plt.show()
+
 
 # Fill missing values
 data["SALARY"].fillna(data["SALARY"].median(), inplace=True)
 data["NAICS_2022_6_NAME"].fillna("Unknown", inplace=True)
+data["REMOTE_TYPE_NAME"].fillna("None, inplace=True")
+
+data.rename(columns={'NAICS_2022_6_NAME': 'INDUSTRY'}, inplace=True)
+
+# Visualize missing data
+msno.heatmap(data)
+plt.title("Missing Values Heatmap")
+plt.show()
 ```
 
 # The heatmap shows a few missing values in the dataset. In this dataset most fields cluster near 1. The value 1 (dark blue) means the two columns have missing values together. 0.0 value (white) suggest there is no relationship.
@@ -143,32 +102,57 @@ data["NAICS_2022_6_NAME"].fillna("Unknown", inplace=True)
 data = data.drop_duplicates(subset=["TITLE", "COMPANY", "LOCATION", "POSTED"], keep="first")
 ```
 
-# Exploratory Data Analysis 
-
 ## Job Postings by Industry
 
 ```{python}
-import plotly.express as px
-fig = px.bar(data["NAICS_2022_6_NAME"].value_counts(), title="Job Postings by Industry")
-fig.show()
+data["posting_count"] = data["ID"]. groupby(data["INDUSTRY"]).transform("count")
+
+industry_summary = data.groupby("INDUSTRY")["posting_count"].first().sort_values(ascending=False).head(25)
+
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+plt.figure(figsize=(12, 10))
+sns.barplot(x=industry_summary.values, y=industry_summary.index, orient='h')
+plt.title("Top 25 Job Postings by Industry", fontsize=16, pad=20)
+plt.xlabel("Number of Job Postings", fontsize=12)
+plt.ylabel("Industry", fontsize=12)
+plt.tight_layout()
+plt.show()
 ```
 
-Job Posting Anaylsis 
+### Job Posting Anaylsis 
 
 ## Salary Distribution by Industry
 
 ```{python}
-fig = px.box(data, x="NAICS_2022_6_NAME", y="SALARY", title="Salary Distribution by Industry")
-fig.show()
+data["AVERAGE_INDUSTRY_SALARY"] = data["SALARY"]. groupby(data["INDUSTRY"]).transform("mean").round()
+
+top_40_industries = data.groupby("INDUSTRY")["AVERAGE_INDUSTRY_SALARY"].first().sort_values(ascending=False).head(40).index
+filtered_data = data[data["INDUSTRY"].isin(top_40_industries)]
+
+plt.figure(figsize=(20, 10))
+sns.boxplot(data=filtered_data, x="INDUSTRY", y="SALARY", 
+            order=top_40_industries)
+plt.title("Salary Distribution by Industry (Top 40 by Average Salary)", fontsize=16, pad=20)
+plt.xlabel("Industry", fontsize=12)
+plt.ylabel("Salary", fontsize=12)
+plt.xticks(rotation=45, ha='right')
+plt.tight_layout()
+plt.show()
 ```
 
-Job Posting Analysis
+### Salary Analysis
 
 ## Remote vs. On-Site Jobs
 
 ```{python}
-fig = px.pie(data, names="REMOTE_TYPE_NAME", title="Remote vs. On-Site Jobs")
-fig.show()
+remote_counts = data["REMOTE_TYPE_NAME"].value_counts()
+
+plt.figure(figsize=(8, 8))
+plt.pie(remote_counts.values, labels=remote_counts.index, autopct='%1.1f%%')
+plt.title("Remote vs. On-Site Jobs", fontsize=16, pad=20)
+plt.show()
 ```
 
 #  Why these visualizations were chosen:
