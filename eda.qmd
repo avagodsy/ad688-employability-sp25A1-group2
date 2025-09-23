@@ -1,0 +1,59 @@
+---
+title: "Research Introduction: Salary & Compensation Trends"
+author:
+  - name: Mahira Ayub
+    affiliations:
+      - id: bu
+        name: Boston University
+        city: Boston
+        state: MA
+  - name: Ava Godsy
+    affiliations:
+      - ref: bu
+  - name: Joshua Lawrence
+    affiliations:
+      - ref: bu
+date: today
+format: 
+  html:
+    theme: minty
+    bibliography: references.bib
+    csl: csl/econometrica.csl
+    toc: true
+---
+
+<!-- Each team member should list their current skills relevant to their selected IT career path.
+Use a numerical scale (1-5) to indicate proficiency levels:
+1 = Beginner
+2 = Basic knowledge
+3 = Intermediate
+4 = Advanced
+5 = Expert -->
+
+## Team Skill Level Dataframe
+```{python}
+import pandas as pd
+
+skills_data = {
+    "Name": ["Ava", "Mahira", "Joshua"],
+    "Python": [#, #, 3],
+    "SQL": [#, #, 4],
+    "Machine Learning": [#, #, 2],
+    "Cloud Computing": [#, #, 1]
+}
+
+df_skills = pd.DataFrame(skills_data)
+df_skills.set_index("Name", inplace=True)
+df_skills
+```
+
+## Visualizing Skill Gaps with Seaborn
+```{python}
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+plt.figure(figsize=(8, 6))
+sns.heatmap(df_skills, annot=True, cmap="coolwarm", linewidths=0.5)
+plt.title("Team Skill Levels Heatmap")
+plt.show()
+```
