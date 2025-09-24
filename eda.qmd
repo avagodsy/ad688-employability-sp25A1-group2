@@ -36,10 +36,10 @@ import pandas as pd
 
 skills_data = {
     "Name": ["Ava", "Mahira", "Joshua"],
-    "Python": [#, 3, 3],
-    "SQL": [#, 1, 4],
-    "Machine Learning": [#, 3, 2],
-    "Cloud Computing": [#, 1, 1]
+    "Python": [3, 3, 3],
+    "SQL": [3, 1, 4],
+    "Machine Learning": [2, 3, 2],
+    "Cloud Computing": [1, 1, 1]
 }
 
 df_skills = pd.DataFrame(skills_data)
@@ -47,13 +47,45 @@ df_skills.set_index("Name", inplace=True)
 df_skills
 ```
 
-## Visualizing Skill Gaps with Seaborn
-```{python}
-import seaborn as sns
-import matplotlib.pyplot as plt
+## Visualizing Skill Gaps in Heatmpa with Plotly
 
-plt.figure(figsize=(8, 6))
-sns.heatmap(df_skills, annot=True, cmap="coolwarm", linewidths=0.5)
-plt.title("Team Skill Levels Heatmap")
-plt.show()
+```{python}
+import kaleido
+import plotly.express as px
+fig = px.imshow(df_skills,
+ labels=dict(x="Skill", y="Team Member Name", color="Skill Self Rating"),
+ title="Key IT Skill Rating Heatmap per Team Member"
+)
+fig.update_layout(
+  title=dict(
+    text="Key IT Skill Rating Heatmap per Team Member",
+    font=dict(size=24, family="Arial", color="black", weight="bold")
+  ),
+  xaxis=dict(
+    title=dict(text="Skill", font=dict(size=20, family="Arial", color="black", weight="bold")),
+    tickangle=90,
+    tickfont=dict(size=10, family="Arial", color="black", weight="bold"),
+    showline=True,
+    linewidth=2,
+    linecolor="black",
+    mirror=True,
+    showgrid=True,
+  ),
+  yaxis=dict(
+    title=dict(text="Teammember Name", font=dict(size=20, family="Arial", color="black", weight="bold")),
+    showline=True,
+    linewidth=2,
+    linecolor="black",
+    mirror=True,
+    showgrid=True,
+    gridcolor="lightgray",
+    gridwidth=0.5
+  ),
+  font=dict(family="Arial", size=16, color="black"),
+  paper_bgcolor="#DCDCDC",
+  showlegend=True,
+)
+fig.show()
+fig.write_image("figures/skill_heatmap.png")
+fig.write_html("figures/skill_heatmap.html")
 ```
