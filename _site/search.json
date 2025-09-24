@@ -131,5 +131,33 @@
     "title": "Data Analysis",
     "section": "",
     "text": "Bar Chart: Top 25 Industries by Job-Posting Volume\n\nThe distribution is skewed, showing demand concentrated in technology and professional services.\n\nA large portion of “unclassified industry” job postings suggests many jobs are not mapped to any industry.\n\nBoxplot: Salary Distribution by Industry\n\nSalaries across the 40 industries skew high, with medians generally in the $120k–$170k range.\n\nIndustries with higher medians and greater dispersions include software/semiconductors and consulting.\n\nSeveral industries have wide IQRs and many upper outliers, while some have less variability, indicating standardized pay.\n\nPie Chart: Job Location Types\n\n17% of jobs are remote, 3.1% are hybrid, and 1.6% are not remote.\n\nA large number of job postings do not specify whether the job is remote or on-site."
+  },
+  {
+    "objectID": "skill_gap_analysis.html",
+    "href": "skill_gap_analysis.html",
+    "title": "Skill Gap Analysis",
+    "section": "",
+    "text": "** Which skills should each member prioritize learning? **\n\nBased on the self assessment rating of each member of the group, everyone should prioritize learning cloud computing.\nCloud Computing is gaining popularity as data is moving to the cloud. Most companies are using cloud services to have easy access to data globally and in real time.\n\n\n\n** What courses or resources can help? **\n\nThe resources and courses that can be helpful in learning cloud computing skills include:\n\nGoogle Cloud Fundamentals\nAWS Academy Cloud Foundations\nMicrosoft Learn - Azure Fundamentals\nAWS Certified Data Analytics – Specialty\nAzure Data Fundamentals (DP-900)\n\n\n\n\n** How can the team collaborate to bridge skill gaps? **\n\nIdentify gaps that are related to the project needs and work on it as a group to learn from eachother.\nSplit tasks and divide work according to each memeber’s skill level.\nCross-train so everyone can learn from each other and develop understanding of cloud analytics tasks."
+  },
+  {
+    "objectID": "eda.html",
+    "href": "eda.html",
+    "title": "Exploratory Data Analysis",
+    "section": "",
+    "text": "import pandas as pd\n\nskills_data = {\n    \"Name\": [\"Ava\", \"Mahira\", \"Joshua\"],\n    \"Python\": [3, 3, 3],\n    \"SQL\": [3, 1, 4],\n    \"Machine Learning\": [2, 3, 2],\n    \"Cloud Computing\": [1, 1, 1]\n}\n\ndf_skills = pd.DataFrame(skills_data)\ndf_skills.set_index(\"Name\", inplace=True)\ndf_skills\n\n\n\n\n\n\n\n\nPython\nSQL\nMachine Learning\nCloud Computing\n\n\nName\n\n\n\n\n\n\n\n\nAva\n3\n3\n2\n1\n\n\nMahira\n3\n1\n3\n1\n\n\nJoshua\n3\n4\n2\n1"
+  },
+  {
+    "objectID": "eda.html#team-skill-level-dataframe",
+    "href": "eda.html#team-skill-level-dataframe",
+    "title": "Exploratory Data Analysis",
+    "section": "",
+    "text": "import pandas as pd\n\nskills_data = {\n    \"Name\": [\"Ava\", \"Mahira\", \"Joshua\"],\n    \"Python\": [3, 3, 3],\n    \"SQL\": [3, 1, 4],\n    \"Machine Learning\": [2, 3, 2],\n    \"Cloud Computing\": [1, 1, 1]\n}\n\ndf_skills = pd.DataFrame(skills_data)\ndf_skills.set_index(\"Name\", inplace=True)\ndf_skills\n\n\n\n\n\n\n\n\nPython\nSQL\nMachine Learning\nCloud Computing\n\n\nName\n\n\n\n\n\n\n\n\nAva\n3\n3\n2\n1\n\n\nMahira\n3\n1\n3\n1\n\n\nJoshua\n3\n4\n2\n1"
+  },
+  {
+    "objectID": "eda.html#visualizing-skill-gaps-in-heatmpa-with-plotly",
+    "href": "eda.html#visualizing-skill-gaps-in-heatmpa-with-plotly",
+    "title": "Exploratory Data Analysis",
+    "section": "Visualizing Skill Gaps in Heatmpa with Plotly",
+    "text": "Visualizing Skill Gaps in Heatmpa with Plotly\n\nimport kaleido\nimport plotly.express as px\nfig = px.imshow(df_skills,\n labels=dict(x=\"Skill\", y=\"Team Member Name\", color=\"Skill Self Rating\"),\n title=\"Key IT Skill Rating Heatmap per Team Member\"\n)\nfig.update_layout(\n  title=dict(\n    text=\"Key IT Skill Rating Heatmap per Team Member\",\n    font=dict(size=24, family=\"Arial\", color=\"black\", weight=\"bold\")\n  ),\n  xaxis=dict(\n    title=dict(text=\"Skill\", font=dict(size=20, family=\"Arial\", color=\"black\", weight=\"bold\")),\n    tickangle=90,\n    tickfont=dict(size=10, family=\"Arial\", color=\"black\", weight=\"bold\"),\n    showline=True,\n    linewidth=2,\n    linecolor=\"black\",\n    mirror=True,\n    showgrid=True,\n  ),\n  yaxis=dict(\n    title=dict(text=\"Teammember Name\", font=dict(size=20, family=\"Arial\", color=\"black\", weight=\"bold\")),\n    showline=True,\n    linewidth=2,\n    linecolor=\"black\",\n    mirror=True,\n    showgrid=True,\n    gridcolor=\"lightgray\",\n    gridwidth=0.5\n  ),\n  font=dict(family=\"Arial\", size=16, color=\"black\"),\n  paper_bgcolor=\"#DCDCDC\",\n  showlegend=True,\n)\nfig.show()\nfig.write_image(\"figures/skill_heatmap.png\")\nfig.write_html(\"figures/skill_heatmap.html\")"
   }
 ]
