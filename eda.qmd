@@ -1,5 +1,5 @@
 ---
-title: "Research Introduction: Salary & Compensation Trends"
+title: "Exploratory Data Analysis"
 author:
   - name: Mahira Ayub
     affiliations:

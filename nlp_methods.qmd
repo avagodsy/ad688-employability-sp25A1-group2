@@ -1,0 +1,23 @@
+---
+title: "NLP Methods"
+author:
+  - name: Mahira Ayub
+    affiliations:
+      - id: bu
+        name: Boston University
+        city: Boston
+        state: MA
+  - name: Ava Godsy
+    affiliations:
+      - ref: bu
+  - name: Joshua Lawrence
+    affiliations:
+      - ref: bu
+date: today
+format: 
+  html:
+    theme: minty
+    bibliography: references.bib
+    csl: csl/econometrica.csl
+    toc: true
+---
