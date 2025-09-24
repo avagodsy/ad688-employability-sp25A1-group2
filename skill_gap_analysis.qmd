@@ -22,12 +22,12 @@ format:
     toc: true
 ---
 
-#  ** Which skills should each member prioritize learning? **
+#  Which skills should each member prioritize learning? 
 
 - Based on the self assessment rating of each member of the group, everyone should prioritize learning cloud computing. 
 - Cloud Computing is gaining popularity as data is moving to the cloud. Most companies are using cloud services to have easy access to data globally and in real time.
 
-# ** What courses or resources can help? **
+# What courses or resources can help?
 
 - The resources and courses that can be helpful in learning cloud computing skills include:
   - Google Cloud Fundamentals
@@ -36,7 +36,7 @@ format:
   - AWS Certified Data Analytics – Specialty
   - Azure Data Fundamentals (DP-900)
 
-# ** How can the team collaborate to bridge skill gaps? **
+# How can the team collaborate to bridge skill gaps? 
 
 - Identify gaps that are related to the project needs and work on it as a group to learn from eachother.
 - Split tasks and divide work according to each memeber's skill level. 
