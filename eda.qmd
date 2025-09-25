@@ -36,9 +36,9 @@ import pandas as pd
 
 skills_data = {
     "Name": ["Ava", "Mahira", "Joshua"],
-    "Python": [3, 3, 3],
-    "SQL": [3, 1, 4],
-    "Machine Learning": [2, 3, 2],
+    "Python": [2, 3, 3],
+    "SQL": [2, 1, 4],
+    "Machine Learning": [1, 3, 2],
     "Cloud Computing": [1, 1, 1]
 }
 
@@ -47,7 +47,7 @@ df_skills.set_index("Name", inplace=True)
 df_skills
 ```
 
-## Visualizing Skill Gaps in Heatmpa with Plotly
+## Visualizing Skill Gaps in Heatmap with Plotly
 
 ```{python}
 import kaleido
@@ -59,12 +59,12 @@ fig = px.imshow(df_skills,
 fig.update_layout(
   title=dict(
     text="Key IT Skill Rating Heatmap per Team Member",
-    font=dict(size=24, family="Arial", color="black", weight="bold")
+    font=dict(size=18, family="Montserrat", color="black", weight="bold")
   ),
   xaxis=dict(
     title=dict(text="Skill", font=dict(size=20, family="Arial", color="black", weight="bold")),
     tickangle=90,
-    tickfont=dict(size=10, family="Arial", color="black", weight="bold"),
+    tickfont=dict(size=14, family="Montserrat", color="black", weight="bold"),
     showline=True,
     linewidth=2,
     linecolor="black",
@@ -72,7 +72,7 @@ fig.update_layout(
     showgrid=True,
   ),
   yaxis=dict(
-    title=dict(text="Teammember Name", font=dict(size=20, family="Arial", color="black", weight="bold")),
+    title=dict(text="Teammember Name", font=dict(size=14, family="Montserrat", color="black", weight="bold")),
     showline=True,
     linewidth=2,
     linecolor="black",
@@ -81,7 +81,7 @@ fig.update_layout(
     gridcolor="lightgray",
     gridwidth=0.5
   ),
-  font=dict(family="Arial", size=16, color="black"),
+  font=dict(family="Montserrat", size=14, color="black"),
   paper_bgcolor="#DCDCDC",
   showlegend=True,
 )
