@@ -22,6 +22,39 @@ format:
     toc: true
 ---
 
+```{python}
+import pandas as pd
+df = pd.read_csv("data/lightcast_job_postings.csv")
+
+filtered_df = df[["ID", "BODY"]]
+filtered_df = filtered_df.dropna()
+```
+
+```{python}
+
+# Assuming job_descriptions is a list of text from job postings
+top_skills = ["Python", "SQL", "Machine Learning", "Cloud Computing", "Docker", "AWS"]
+
+skill_counts = {}
+for skill in top_skills:
+    skill_counts[skill] = filtered_df["BODY"].str.contains(skill, case=False, na=False).sum()
+
+skills_df_pd = pd.DataFrame(list(skill_counts.items()), columns=['Skill', 'Count'])
+
+print(skills_df_pd)
+skills_df_pd.to_csv("data/skills_job_description.csv", index=False)
+```
+
+```{python}
+import plotly.express as px
+
+top_skills_fig = px.bar(skills_df_pd, x='Skill', y='Count', title='Bar Chart of Job Description Skill Occurence')
+
+top_skills_fig.show()
+top_skills_fig.write_image("figures/top_skills.png")
+top_skills_fig.write_html("figures/top_skills.html")
+```
+
 #  Which skills should each member prioritize learning? 
 
 - Based on the self assessment rating of each member of the group, everyone should prioritize learning cloud computing. 
