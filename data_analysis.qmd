@@ -119,8 +119,7 @@ ax = msno.heatmap(data, cmap=custom_cmap)
 plt.title("Missing Values Heatmap", fontsize=18, fontweight='bold')
 
 plt.show()
-plt.write_image("figures/missing_values.png")
-plt.write_html("figures/missing_values.html")
+plt.savefig("figures/missing_values.png")
 ```
 
 The heatmap shows a few missing values in the dataset. In this dataset most fields cluster near 1. The value 1 (dark blue) means the two columns have missing values together. 0.0 value (white) suggest there is no relationship.
@@ -163,8 +162,7 @@ plt.ylabel("Industry", fontsize=14)
 
 plt.tight_layout()
 plt.show()
-plt.write_image("figures/top_postings.png")
-plt.write_html("figures/top_postings.html")
+plt.savefig("figures/top_postings.png")
 ```
 
 ## Salary Distribution by Industry
@@ -207,8 +205,7 @@ plt.xticks(rotation=45, ha='right')
 plt.tight_layout()
 plt.show()
 
-plt.write_image("figures/salary_dist.png")
-plt.write_html("figures/salary_dist.html")
+plt.savefig("figures/salary_dist.png")
 
 ```
 
@@ -259,8 +256,7 @@ for autotext in autotexts:
     autotext.set_fontsize(14)
 
 plt.show()
-plt.write_image("figures/remote_onsite.png")
-plt.write_html("figures/remote_onsite.html")
+plt.savefig("figures/remote_onsite.png")
 
 ```
 
