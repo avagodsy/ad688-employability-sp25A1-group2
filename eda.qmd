@@ -52,19 +52,21 @@ df_skills
 ```{python}
 import kaleido
 import plotly.express as px
+custom_colorscale = ["#B14E53", "#78C2AD", ]
 fig = px.imshow(df_skills,
  labels=dict(x="Skill", y="Team Member Name", color="Skill Self Rating"),
- title="Key IT Skill Rating Heatmap per Team Member"
+ title="Key IT Skill Rating Heatmap per Team Member",
+    color_continuous_scale=custom_colorscale
 )
 fig.update_layout(
   title=dict(
     text="Key IT Skill Rating Heatmap per Team Member",
-    font=dict(size=18, family="Montserrat", color="black", weight="bold")
+    font=dict(size=18, family="Verdana", color="black", weight="bold")
   ),
   xaxis=dict(
-    title=dict(text="Skill", font=dict(size=20, family="Arial", color="black", weight="bold")),
+    title=dict(text="Skill", font=dict(size=20, family="Verdana", color="black", weight="bold")),
     tickangle=90,
-    tickfont=dict(size=14, family="Montserrat", color="black", weight="bold"),
+    tickfont=dict(size=14, family="Verdana", color="black", weight="bold"),
     showline=True,
     linewidth=2,
     linecolor="black",
@@ -72,17 +74,17 @@ fig.update_layout(
     showgrid=True,
   ),
   yaxis=dict(
-    title=dict(text="Teammember Name", font=dict(size=14, family="Montserrat", color="black", weight="bold")),
+    title=dict(text="Teammember Name", font=dict(size=14, family="Verdana", color="black", weight="bold")),
     showline=True,
     linewidth=2,
     linecolor="black",
     mirror=True,
     showgrid=True,
-    gridcolor="lightgray",
+    gridcolor="white",
     gridwidth=0.5
   ),
-  font=dict(family="Montserrat", size=14, color="black"),
-  paper_bgcolor="#DCDCDC",
+  font=dict(family="Verdana", size=14, color="black"),
+  paper_bgcolor="white",
   showlegend=True,
 )
 fig.show()

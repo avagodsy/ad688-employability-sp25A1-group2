@@ -1,6 +1,6 @@
 The following details visualizations that match the Minty QMD theme.
 
-Font: Montserrat
+Font: Verdana
 Graph titles: size 18
 Graph text: size 14
 

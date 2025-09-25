@@ -95,9 +95,32 @@ data.rename(columns={'NAICS_2022_6_NAME': 'INDUSTRY'}, inplace=True)
 data.dropna(thresh=len(data) * 0.5, axis=1, inplace=True)
 
 # Visualize missing data
-msno.heatmap(data)
-plt.title("Missing Values Heatmap")
+import matplotlib as mpl
+from matplotlib.colors import LinearSegmentedColormap
+
+# Set global font settings
+mpl.rcParams['font.family'] = 'Verdana'
+mpl.rcParams['font.size'] = 14
+mpl.rcParams['text.color'] = 'black'
+mpl.rcParams['axes.labelcolor'] = 'black'
+mpl.rcParams['xtick.color'] = 'black'
+mpl.rcParams['ytick.color'] = 'black'
+
+# Define custom green-to-red colormap
+custom_cmap = LinearSegmentedColormap.from_list(
+    'custom_green_red', ['#B14E53', '#78C2AD'], N=256
+)
+
+# Create the heatmap
+fig = plt.figure(figsize=(10, 6))
+ax = msno.heatmap(data, cmap=custom_cmap)
+
+# Set the title
+plt.title("Missing Values Heatmap", fontsize=18, fontweight='bold')
+
 plt.show()
+plt.write_image("figures/missing_values.png")
+plt.write_html("figures/missing_values.html")
 ```
 
 The heatmap shows a few missing values in the dataset. In this dataset most fields cluster near 1. The value 1 (dark blue) means the two columns have missing values together. 0.0 value (white) suggest there is no relationship.
@@ -111,50 +134,134 @@ data = data.drop_duplicates(subset=["TITLE", "COMPANY", "LOCATION", "POSTED"], k
 ## Job Postings by Industry
 
 ```{python}
-data["posting_count"] = data["ID"]. groupby(data["INDUSTRY"]).transform("count")
-
-industry_summary = data.groupby("INDUSTRY")["posting_count"].first().sort_values(ascending=False).head(25)
-
 import seaborn as sns
 import matplotlib.pyplot as plt
+import matplotlib as mpl
 
+# Set global font family to Verdana
+mpl.rcParams['font.family'] = 'Verdana'
+
+# Compute posting count per industry
+data["posting_count"] = data["ID"].groupby(data["INDUSTRY"]).transform("count")
+
+# Summarize and sort top 25 industries
+industry_summary = data.groupby("INDUSTRY")["posting_count"].first().sort_values(ascending=False).head(25)
+
+# Plot
 plt.figure(figsize=(12, 10))
-sns.barplot(x=industry_summary.values, y=industry_summary.index, orient='h')
-plt.title("Top 25 Job Postings by Industry", fontsize=16, pad=20)
-plt.xlabel("Number of Job Postings", fontsize=12)
-plt.ylabel("Industry", fontsize=12)
+sns.barplot(
+    x=industry_summary.values,
+    y=industry_summary.index,
+    orient='h',
+    color='#6CC3D5'
+)
+
+# Title and labels with updated font sizes
+plt.title("Top 25 Job Postings by Industry", fontsize=18, fontweight='bold', pad=20)
+plt.xlabel("Number of Job Postings", fontsize=14)
+plt.ylabel("Industry", fontsize=14)
+
 plt.tight_layout()
 plt.show()
+plt.write_image("figures/top_postings.png")
+plt.write_html("figures/top_postings.html")
 ```
 
 ## Salary Distribution by Industry
 
 ```{python}
-data["AVERAGE_INDUSTRY_SALARY"] = data["SALARY"]. groupby(data["INDUSTRY"]).transform("mean").round()
+import seaborn as sns
+import matplotlib.pyplot as plt
+import matplotlib as mpl
 
+# Set global font family to Verdana
+mpl.rcParams['font.family'] = 'Verdana'
+
+# Calculate average industry salary
+data["AVERAGE_INDUSTRY_SALARY"] = data["SALARY"].groupby(data["INDUSTRY"]).transform("mean").round()
+
+# Get top 40 industries by average salary
 top_40_industries = data.groupby("INDUSTRY")["AVERAGE_INDUSTRY_SALARY"].first().sort_values(ascending=False).head(40).index
 filtered_data = data[data["INDUSTRY"].isin(top_40_industries)]
 
-plt.figure(figsize=(20, 10))
-sns.boxplot(data=filtered_data, x="INDUSTRY", y="SALARY", 
-            order=top_40_industries)
-plt.title("Salary Distribution by Industry (Top 40 by Average Salary)", fontsize=16, pad=20)
-plt.xlabel("Industry", fontsize=12)
-plt.ylabel("Salary", fontsize=12)
+# Create figure with taller height
+plt.figure(figsize=(20, 14))  # Increased height from 10 to 14
+
+# Create boxplot with custom color
+sns.boxplot(
+    data=filtered_data,
+    x="INDUSTRY",
+    y="SALARY",
+    order=top_40_industries,
+    color='#F3969A'  # Custom box color
+)
+
+# Title and labels with updated font sizes
+plt.title("Salary Distribution by Industry (Top 40 by Average Salary)", fontsize=18, fontweight='bold', pad=20)
+plt.xlabel("Industry", fontsize=14)
+plt.ylabel("Salary", fontsize=14)
+
+# Rotate x-tick labels for readability
 plt.xticks(rotation=45, ha='right')
+
 plt.tight_layout()
 plt.show()
+
+plt.write_image("figures/salary_dist.png")
+plt.write_html("figures/salary_dist.html")
+
 ```
 
 ## Remote vs. On-Site Jobs
 
 ```{python}
-remote_counts = data["REMOTE_TYPE_NAME"].value_counts()
+import matplotlib.pyplot as plt
+import matplotlib as mpl
 
+# Set global font family to Verdana
+mpl.rcParams['font.family'] = 'Verdana'
+
+# Clean and group remote types
+remote_grouped = data["REMOTE_TYPE_NAME"].fillna("Onsite").replace({
+    "[None]": "Onsite", 
+    "Not Remote": "Onsite",
+    "None": "Onsite"
+})
+
+# Count values
+remote_counts = remote_grouped.value_counts()
+
+# Define colors matching labels (make sure the order matches remote_counts.index)
+color_map = {
+    "Onsite": "#297C8A",
+    "Hybrid Remote": "#78C2AD",
+    "Remote": "#F3969A"
+}
+
+# Get colors for the pie chart slices in the correct order, fallback to gray if missing
+colors = [color_map.get(label, "#cccccc") for label in remote_counts.index]
+
+# Plot pie chart
 plt.figure(figsize=(8, 8))
-plt.pie(remote_counts.values, labels=remote_counts.index, autopct='%1.1f%%')
-plt.title("Remote vs. On-Site Jobs", fontsize=16, pad=20)
+wedges, texts, autotexts = plt.pie(
+    remote_counts.values,
+    labels=remote_counts.index,
+    autopct='%1.1f%%',
+    colors=colors,
+    textprops={'fontsize': 14, 'color': 'black'}
+)
+
+# Title with larger font
+plt.title("Remote vs. On-Site Jobs", fontsize=18, fontweight='bold', pad=20)
+
+# Adjust autotext (percentage text) font size
+for autotext in autotexts:
+    autotext.set_fontsize(14)
+
 plt.show()
+plt.write_image("figures/remote_onsite.png")
+plt.write_html("figures/remote_onsite.html")
+
 ```
 
 ## Why these visualizations were chosen

@@ -48,11 +48,48 @@ skills_df_pd.to_csv("data/skills_job_description.csv", index=False)
 ```{python}
 import plotly.express as px
 
-top_skills_fig = px.bar(skills_df_pd, x='Skill', y='Count', title='Bar Chart of Job Description Skill Occurence')
+top_skills_fig = px.bar(
+    skills_df_pd,
+    x='Skill',
+    y='Count',
+    title='Bar Chart of Job Description Skill Occurence',
+    color_discrete_sequence=['#3D7C6A']  # Set bar color
+)
+
+# Update layout for fonts and sizes
+top_skills_fig.update_layout(
+    font=dict(
+        family="Verdana",
+        size=14,
+        color="black"
+    ),
+    title=dict(
+        font=dict(
+            family="Verdana",
+            size=18,
+            color="black"
+        )
+    ),
+    xaxis=dict(
+        title_font=dict(
+            family="Verdana",
+            size=14,
+            color="black"
+        )
+    ),
+    yaxis=dict(
+        title_font=dict(
+            family="Verdana",
+            size=14,
+            color="black"
+        )
+    )
+)
 
 top_skills_fig.show()
 top_skills_fig.write_image("figures/top_skills.png")
 top_skills_fig.write_html("figures/top_skills.html")
+
 ```
 
 #  Which skills should each member prioritize learning? 
