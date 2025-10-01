@@ -3,6 +3,7 @@ The following details visualizations that match the Minty QMD theme.
 Font: Verdana
 Graph titles: size 18
 Graph text: size 14
+All text color: Black
 
 Colors:
 Primary - #78C2AD / #3D7C6A
