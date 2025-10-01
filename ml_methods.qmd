@@ -265,7 +265,8 @@ fig1 = px.scatter(
     title="Actual vs Predicted Salary (Linear Regression)",
     labels={"SALARY": "Actual Salary ($)", "prediction": "Predicted Salary ($)"},
     opacity=0.6,
-    hover_data=["STATE_NAME", "TITLE_NAME"]
+    hover_data=["STATE_NAME", "TITLE_NAME"],
+    color_discrete_sequence=['#78C2AD']
 )
 fig1.add_trace(go.Scatter(
     x=[pred_sample["SALARY"].min(), pred_sample["SALARY"].max()],
@@ -274,6 +275,34 @@ fig1.add_trace(go.Scatter(
     name='Perfect Prediction',
     line=dict(color='red', dash='dash')
 ))
+fig1.update_layout(
+    font=dict(
+        family="Verdana",
+        size=14,
+        color="black"
+    ),
+    title=dict(
+        font=dict(
+            family="Verdana",
+            size=18,
+            color="black"
+        )
+    ),
+    xaxis=dict(
+        title_font=dict(
+            family="Verdana",
+            size=14,
+            color="black"
+        )
+    ),
+    yaxis=dict(
+        title_font=dict(
+            family="Verdana",
+            size=14,
+            color="black"
+        )
+    )
+)
 fig1.show()
 
 
@@ -290,9 +319,38 @@ fig2 = px.bar(
     title="Top 10 States by Average Salary",
     labels={"STATE_NAME": "State", "avg_salary": "Average Salary ($)"},
     color="avg_salary",
-    text="job_count"
+    text="job_count",
+    color_continuous_scale=px.colors.sequential.Mint
 )
 fig2.update_traces(texttemplate='Jobs: %{text}', textposition='outside')
+fig2.update_layout(
+    font=dict(
+        family="Verdana",
+        size=14,
+        color="black"
+    ),
+    title=dict(
+        font=dict(
+            family="Verdana",
+            size=18,
+            color="black"
+        )
+    ),
+    xaxis=dict(
+        title_font=dict(
+            family="Verdana",
+            size=14,
+            color="black"
+        )
+    ),
+    yaxis=dict(
+        title_font=dict(
+            family="Verdana",
+            size=14,
+            color="black"
+        )
+    )
+)
 fig2.show()
 
 
@@ -305,7 +363,35 @@ fig3 = px.pie(
     values="count",
     names="Category",
     title="Distribution of Above/Below Average Salaries",
-    color_discrete_sequence=["#FF6B6B", "#4ECDC4"]
+    color_discrete_sequence=["#78C2AD", "#F3969A"]
+)
+fig3.update_layout(
+    font=dict(
+        family="Verdana",
+        size=14,
+        color="black"
+    ),
+    title=dict(
+        font=dict(
+            family="Verdana",
+            size=18,
+            color="black"
+        )
+    ),
+    xaxis=dict(
+        title_font=dict(
+            family="Verdana",
+            size=14,
+            color="black"
+        )
+    ),
+    yaxis=dict(
+        title_font=dict(
+            family="Verdana",
+            size=14,
+            color="black"
+        )
+    )
 )
 fig3.show()
 
@@ -323,7 +409,36 @@ fig4 = px.bar(
     orientation='h',
     title="Top 15 Job Titles by Average Salary (min 5 postings)",
     labels={"TITLE_NAME": "Job Title", "avg_salary": "Average Salary ($)"},
-    color="avg_salary"
+    color="avg_salary",
+    color_continuous_scale=px.colors.sequential.Mint
+)
+fig4.update_layout(
+    font=dict(
+        family="Verdana",
+        size=14,
+        color="black"
+    ),
+    title=dict(
+        font=dict(
+            family="Verdana",
+            size=18,
+            color="black"
+        )
+    ),
+    xaxis=dict(
+        title_font=dict(
+            family="Verdana",
+            size=14,
+            color="black"
+        )
+    ),
+    yaxis=dict(
+        title_font=dict(
+            family="Verdana",
+            size=14,
+            color="black"
+        )
+    )
 )
 fig4.show()
 
