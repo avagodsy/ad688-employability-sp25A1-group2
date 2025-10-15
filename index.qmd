@@ -1,5 +1,5 @@
 ---
-title: "Research Introduction: Salary & Compensation Trends"
+title: "Home"
 author:
   - name: Mahira Ayub
     affiliations:
@@ -17,8 +17,6 @@ date: today
 format: 
   html:
     theme: minty
-    bibliography: references.bib
-    csl: csl/econometrica.csl
     toc: true
 ---
 
