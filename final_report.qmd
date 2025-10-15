@@ -17,15 +17,10 @@ author:
 date: today
 format: 
   docx: default
-  html:
-    theme: minty
-    bibliography: references.bib
-    csl: csl/econometrica.csl
-    toc: true
 ---
 
 {{< include research_introduction.qmd >}}
 {{< include data_analysis.qmd >}}
 {{< include eda.qmd >}}
 {{< include skill_gap_analysis.qmd >}}
-{{< include ml_methods.qmd >}}
+{{< include ml_methods.ipynb >}}

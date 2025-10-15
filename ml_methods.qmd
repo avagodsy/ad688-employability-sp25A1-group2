@@ -1,5 +1,5 @@
 ---
-title: ML Methods
+title: "ML Methods"
 author:
   - name: Mahira Ayub
     affiliations:
@@ -14,20 +14,19 @@ author:
     affiliations:
       - ref: bu
 date: today
-format:
+format: 
   html:
     theme: minty
     bibliography: references.bib
     csl: csl/econometrica.csl
     toc: true
-jupyter: python3
 ---
 
 
 ```{python}
 import os
 # Set JAVA_HOME
-os.environ['JAVA_HOME'] = r'C:\Program Files\Java\jdk-17'  # Update to your exact path
+os.environ['JAVA_HOME'] = r'C:\Program Files\Java\jdk-24'  # Update to your exact path
 import pyspark
 from pyspark.sql import SparkSession
 import pandas as pd
