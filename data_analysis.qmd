@@ -18,20 +18,14 @@ bibliography: references.bib
 csl: csl/econometrica.csl
 format: 
   html:
-    theme: minty
     toc: true
-    number-sections: true
-    df-print: paged
-    downloads: [docx]
-  docx:
-    toc: true
-    number-sections: true
 ---
 
 # Exploratory Data Analysis 
 
 ## Importing Dataset Using Pandas
 ```{python}
+
 import pandas as pd
 
 # Load the dataset

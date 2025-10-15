@@ -3,23 +3,12 @@ title: "AI Salary & Compensation Trends"
 subtitle: "Final Report"
 author:
   - name: Mahira Ayub
-    affiliations:
-      - id: bu
-        name: Boston University
-        city: Boston
-        state: MA
   - name: Ava Godsy
-    affiliations:
-      - ref: bu
   - name: Joshua Lawrence
-    affiliations:
-      - ref: bu
-format: 
-  docx: default
 ---
 
 {{< include research_introduction.qmd >}}
 {{< include data_analysis.qmd >}}
 {{< include eda.qmd >}}
 {{< include skill_gap_analysis.qmd >}}
-{{< include ml_methods.ipynb >}}
+{{< embed ml_methods.ipynb >}}

@@ -1,5 +1,8 @@
 project:
   type: website
+  render:
+    - "!final_report.qmd"
+
 
 website:
   title: "Job Market Analysis 2025, Group 2"
@@ -20,4 +23,9 @@ website:
 format:
   html:
     theme: minty
+    toc: true
+    df-print: paged
+    number-sections: true
+  pdf:
+    documentclass: report
     toc: true

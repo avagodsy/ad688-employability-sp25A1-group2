@@ -15,7 +15,6 @@ author:
       - ref: bu
 format: 
   html:
-    theme: minty
     bibliography: references.bib
     csl: csl/econometrica.csl
     toc: true

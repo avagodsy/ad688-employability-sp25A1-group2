@@ -13,10 +13,6 @@ author:
   - name: Joshua Lawrence
     affiliations:
       - ref: bu
-format: 
-  html:
-    theme: minty
-    toc: true
 ---
 
 # Welcome to my site
