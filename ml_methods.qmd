@@ -13,12 +13,9 @@ author:
   - name: Joshua Lawrence
     affiliations:
       - ref: bu
-date: today
 format: 
   html:
     theme: minty
-    bibliography: references.bib
-    csl: csl/econometrica.csl
     toc: true
 ---
 

@@ -13,7 +13,6 @@ author:
   - name: Joshua Lawrence
     affiliations:
       - ref: bu
-date: today
 format: 
   html:
     theme: minty
