@@ -21,6 +21,7 @@ format:
 
 ```{python}
 #| eval: false
+#| echo: true 
 import os
 # Set JAVA_HOME
 os.environ['JAVA_HOME'] = r'C:\Program Files\Java\jdk-24'  # Update to your exact path
@@ -53,6 +54,7 @@ df = spark.read \
 
 ```{python}
 #| eval: false
+#| echo: true 
 from pyspark.sql import functions as F
 from pyspark.sql.types import *
 from pyspark.ml import Pipeline
@@ -102,6 +104,7 @@ df_clean = df_clean.withColumn(
 
 ```{python}
 #| eval: false
+#| echo: true 
 # Handle SKILLS_NAME - it may contain arrays or null values
 # Extract first skill or mark as "No Skills Listed"
 df_clean = df_clean.withColumn(
@@ -146,6 +149,7 @@ features_df.groupBy("PRIMARY_SKILL").count().orderBy(F.desc("count")).show(10, t
 
 ```{python}
 #| eval: false
+#| echo: true 
 # String indexing for categorical variables
 state_indexer = StringIndexer(inputCol="STATE_NAME", outputCol="STATE_INDEX", handleInvalid="keep")
 title_indexer = StringIndexer(inputCol="TITLE_NAME", outputCol="TITLE_INDEX", handleInvalid="keep")
@@ -171,6 +175,7 @@ print(f"Test set size: {test_data.count():,}")
 
 ```{python}
 #| eval: false
+#| echo: true 
 # Linear Regression model
 lr = LinearRegression(featuresCol="features", labelCol="SALARY", maxIter=100, regParam=0.1)
 
@@ -208,6 +213,7 @@ lr_predictions.select("STATE_NAME", "TITLE_NAME", "PRIMARY_SKILL", "SALARY", "pr
 
 ```{python}
 #| eval: false
+#| echo: true 
 # Logistic Regression model
 log_reg = LogisticRegression(featuresCol="features", labelCol="ABOVE_AVERAGE_SALARY", maxIter=100)
 
@@ -245,6 +251,7 @@ confusion_matrix.orderBy("ABOVE_AVERAGE_SALARY", "prediction").show()
 
 ```{python}
 #| eval: false
+#| echo: true 
 # Extract the trained linear regression model
 trained_lr = lr_model.stages[-1]
 coefficients = trained_lr.coefficients
@@ -257,6 +264,7 @@ print(f"Sum of coefficients: {sum(coefficients):,.2f}")
 
 ```{python}
 #| eval: false
+#| echo: true 
 import kaleido
 pred_data = lr_predictions.select("SALARY", "prediction", "STATE_NAME", "TITLE_NAME").limit(1000).collect()
 pred_sample = pd.DataFrame(pred_data, columns=["SALARY", "prediction", "STATE_NAME", "TITLE_NAME"])
@@ -488,6 +496,7 @@ Overall, the visualization indicates that executive-level and architecture-focus
 
 ```{python}
 #| eval: false
+#| echo: true 
 import pandas as pd
 import plotly.express as px
 from sklearn.preprocessing import LabelEncoder
@@ -572,6 +581,7 @@ The bar chart shown above compares average salaries across U.S. states and shows
 
 ```{python}
 #| eval: false
+#| echo: true 
 # Import libraries
 import pandas as pd
 import numpy as np

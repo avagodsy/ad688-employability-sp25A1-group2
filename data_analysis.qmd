@@ -45,6 +45,8 @@ data = pd.read_csv('data\lightcast_job_postings.csv')
 
 
 ```{python}
+#| eval: false
+#| echo: true 
 columns_to_drop = [
 'LAST_UPDATED_DATE', 'LAST_UPDATED_TIMESTAMP', 'DUPLICATES', 'EXPIRED', 'ACTIVE_SOURCES_INFO', 'TITLE_RAW','BODY',
 'COMPANY_NAME', 'COMPANY_RAW', 'COMPANY_IS_STAFFING', 'EDUCATION_LEVELS', 'EDUCATION_LEVELS_NAME', 'MIN_EDULEVELS',
@@ -72,6 +74,8 @@ data.drop(columns=columns_to_drop, inplace=True)
   - Columns with >50% missing values are dropped.
 
 ```{python}
+#| eval: false
+#| echo: true 
 import missingno as msno
 import matplotlib.pyplot as plt
 
@@ -85,7 +89,8 @@ data["REMOTE_TYPE_NAME"].fillna("None, inplace=True")
 data.rename(columns={'NAICS_2022_6_NAME': 'INDUSTRY'}, inplace=True)
 ```
 ```{python}
-
+#| eval: false
+#| echo: true 
 data.dropna(thresh=len(data) * 0.5, axis=1, inplace=True)
 
 # Visualize missing data
@@ -121,12 +126,16 @@ The heatmap shows a few missing values in the dataset. In this dataset most fiel
 ## Remove Duplicates 
 
 ```{python}
+#| eval: false
+#| echo: true 
 data = data.drop_duplicates(subset=["TITLE", "COMPANY", "LOCATION", "POSTED"], keep="first")
 ```
 
 ## Job Postings by Industry
 
 ```{python}
+#| eval: false
+#| echo: true 
 import seaborn as sns
 import matplotlib.pyplot as plt
 import matplotlib as mpl
@@ -162,6 +171,8 @@ plt.savefig("figures/top_postings.png")
 ## Salary Distribution by Industry
 
 ```{python}
+#| eval: false
+#| echo: true 
 import seaborn as sns
 import matplotlib.pyplot as plt
 import matplotlib as mpl
@@ -206,6 +217,8 @@ plt.savefig("figures/salary_dist.png")
 ## Remote vs. On-Site Jobs
 
 ```{python}
+#| eval: false
+#| echo: true 
 import matplotlib.pyplot as plt
 import matplotlib as mpl
 
@@ -293,6 +306,8 @@ Use a numerical scale (1-5) to indicate proficiency levels:
 4 = Advanced
 5 = Expert -->
 ```{python}
+#| eval: false
+#| echo: true 
 import pandas as pd
 
 skills_data = {
@@ -311,6 +326,8 @@ df_skills
 ## Visualizing Skill Gaps in Heatmap with Plotly
 
 ```{python}
+#| eval: false
+#| echo: true 
 import kaleido
 import plotly.express as px
 custom_colorscale = ["#B14E53", "#78C2AD", ]
