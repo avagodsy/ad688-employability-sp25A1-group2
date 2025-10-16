@@ -1,8 +1,5 @@
 project:
   type: website
-  render:
-    - "!final_report.qmd"
-
 
 website:
   title: "Job Market Analysis 2025, Group 2"
@@ -18,12 +15,11 @@ website:
         text: "Skill Gap Analysis"
       - href: ml_methods.qmd
         text: "ML Methods"
+
 format:
   html:
-    theme: minty
+    theme: cosmo
+    css: styles.css
     toc: true
-    df-print: paged
-    number-sections: true
-  pdf:
-    documentclass: report
-    toc: true
+    code-fold: false 
+    code-overflow: wrap

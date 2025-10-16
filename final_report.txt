@@ -1,0 +1,13 @@
+---
+title: "AI Salary & Compensation Trends"
+subtitle: "Final Report"
+author:
+  - name: Mahira Ayub
+  - name: Ava Godsy
+  - name: Joshua Lawrence
+---
+
+{{< include research_introduction.qmd >}}
+{{< include data_analysis.qmd >}}
+{{< include skill_gap_analysis.qmd >}}
+{{< embed ml_methods.ipynb >}}

@@ -13,9 +13,6 @@ author:
   - name: Joshua Lawrence
     affiliations:
       - ref: bu
-format: 
-  html:
-    toc: true
 ---
 
 ```{python}
@@ -83,8 +80,8 @@ top_skills_fig.update_layout(
 )
 
 top_skills_fig.show()
-top_skills_fig.write_image("figures/top_skills.png")
-top_skills_fig.write_html("figures/top_skills.html")
+top_skills_fig.write_image("./figures/top_skills.png")
+top_skills_fig.write_html("./figures/top_skills.html")
 
 ```
 
