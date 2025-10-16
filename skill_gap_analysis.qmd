@@ -19,6 +19,7 @@ format:
 ---
 
 ```{python}
+
 import pandas as pd
 df = pd.read_csv("data/lightcast_job_postings.csv")
 
@@ -27,7 +28,6 @@ filtered_df = filtered_df.dropna()
 ```
 
 ```{python}
-
 # Assuming job_descriptions is a list of text from job postings
 top_skills = ["Python", "SQL", "Machine Learning", "Cloud Computing", "Docker", "AWS"]
 
