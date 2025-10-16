@@ -9,6 +9,5 @@ author:
 
 {{< include research_introduction.qmd >}}
 {{< include data_analysis.qmd >}}
-{{< include eda.qmd >}}
 {{< include skill_gap_analysis.qmd >}}
 {{< embed ml_methods.ipynb >}}

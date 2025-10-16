@@ -15,4 +15,5 @@ author:
       - ref: bu
 ---
 
-# Welcome to my site
+# Welcome
+Welcome to Group 2's report on Salary and Compensation Trends for AI Careers. Use the navigation bar above to view the report.

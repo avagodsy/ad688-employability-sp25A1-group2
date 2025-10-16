@@ -61,7 +61,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="data_analysis_files/libs/clipboard/clipboard.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="data_analysis_files/libs/clipboard/clipboard.min.js"></script>
 <script src="data_analysis_files/libs/quarto-html/quarto.js" type="module"></script>
 <script src="data_analysis_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="data_analysis_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -73,6 +73,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="data_analysis_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="data_analysis_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="data_analysis_files/libs/bootstrap/bootstrap-9e3ffae467580fdb927a41352e75a2e0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+<script type="text/javascript">
+window.PlotlyConfig = {MathJaxConfig: 'local'};
+if (window.MathJax && window.MathJax.Hub && window.MathJax.Hub.Config) {window.MathJax.Hub.Config({SVG: {font: "STIX-Web"}});}
+</script>
+<script type="module">import "https://cdn.plot.ly/plotly-3.1.0.min"</script>
+
 
 
 </head>
@@ -96,6 +105,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#remote-vs.-on-site-jobs" id="toc-remote-vs.-on-site-jobs" class="nav-link" data-scroll-target="#remote-vs.-on-site-jobs">Remote vs.&nbsp;On-Site Jobs</a></li>
   <li><a href="#why-these-visualizations-were-chosen" id="toc-why-these-visualizations-were-chosen" class="nav-link" data-scroll-target="#why-these-visualizations-were-chosen">Why these visualizations were chosen</a></li>
   <li><a href="#key-insights-from-each-graph" id="toc-key-insights-from-each-graph" class="nav-link" data-scroll-target="#key-insights-from-each-graph">Key insights from each graph</a></li>
+  <li><a href="#team-skill-level-dataframe" id="toc-team-skill-level-dataframe" class="nav-link" data-scroll-target="#team-skill-level-dataframe">Team Skill Level Dataframe</a></li>
+  <li><a href="#visualizing-skill-gaps-in-heatmap-with-plotly" id="toc-visualizing-skill-gaps-in-heatmap-with-plotly" class="nav-link" data-scroll-target="#visualizing-skill-gaps-in-heatmap-with-plotly">Visualizing Skill Gaps in Heatmap with Plotly</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -155,7 +166,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1>Exploratory Data Analysis</h1>
 <section id="importing-dataset-using-pandas" class="level2">
 <h2 class="anchored" data-anchor-id="importing-dataset-using-pandas">Importing Dataset Using Pandas</h2>
-<div id="c2f63e9b" class="cell" data-execution_count="1">
+<div id="0949d0ef" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the dataset</span></span>
@@ -169,11 +180,11 @@ invalid escape sequence '\l'
 
 invalid escape sequence '\l'
 
-C:\Users\avago\AppData\Local\Temp\ipykernel_11572\3126061157.py:4: SyntaxWarning:
+C:\Users\avago\AppData\Local\Temp\ipykernel_30240\3126061157.py:4: SyntaxWarning:
 
 invalid escape sequence '\l'
 
-C:\Users\avago\AppData\Local\Temp\ipykernel_11572\3126061157.py:4: DtypeWarning:
+C:\Users\avago\AppData\Local\Temp\ipykernel_30240\3126061157.py:4: DtypeWarning:
 
 Columns (19,30) have mixed types. Specify dtype option on import or set low_memory=False.
 </code></pre>
@@ -190,7 +201,7 @@ The dataset contains multiple versions of industry NAICS and Occupational SOC wh
 <li><p><strong>How will this improve analysis?</strong><br>
 This will improve the analysis by enhancing the efficiency of the data; by having smaller datasets it will be easier to process and run data. It will also improve consistency because by having only one version of the data the risk of duplication will be low.</p></li>
 </ul>
-<div id="9130fa40" class="cell" data-execution_count="2">
+<div id="826a6b3d" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>columns_to_drop <span class="op">=</span> [</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="st">'LAST_UPDATED_DATE'</span>, <span class="st">'LAST_UPDATED_TIMESTAMP'</span>, <span class="st">'DUPLICATES'</span>, <span class="st">'EXPIRED'</span>, <span class="st">'ACTIVE_SOURCES_INFO'</span>, <span class="st">'TITLE_RAW'</span>,<span class="st">'BODY'</span>,</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="st">'COMPANY_NAME'</span>, <span class="st">'COMPANY_RAW'</span>, <span class="st">'COMPANY_IS_STAFFING'</span>, <span class="st">'EDUCATION_LEVELS'</span>, <span class="st">'EDUCATION_LEVELS_NAME'</span>, <span class="st">'MIN_EDULEVELS'</span>,</span>
@@ -219,7 +230,7 @@ This will improve the analysis by enhancing the efficiency of the data; by havin
 <li>Columns with &gt;50% missing values are dropped.</li>
 </ul></li>
 </ul>
-<div id="7d3dd6c5" class="cell" data-execution_count="3">
+<div id="50259d4a" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> missingno <span class="im">as</span> msno</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -232,7 +243,7 @@ This will improve the analysis by enhancing the efficiency of the data; by havin
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>data.rename(columns<span class="op">=</span>{<span class="st">'NAICS_2022_6_NAME'</span>: <span class="st">'INDUSTRY'</span>}, inplace<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>C:\Users\avago\AppData\Local\Temp\ipykernel_11572\1830881447.py:7: FutureWarning:
+<pre><code>C:\Users\avago\AppData\Local\Temp\ipykernel_30240\1830881447.py:7: FutureWarning:
 
 A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.
 The behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.
@@ -241,7 +252,7 @@ For example, when doing 'df[col].method(value, inplace=True)', try using 'df.met
 
 
 
-C:\Users\avago\AppData\Local\Temp\ipykernel_11572\1830881447.py:8: FutureWarning:
+C:\Users\avago\AppData\Local\Temp\ipykernel_30240\1830881447.py:8: FutureWarning:
 
 A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.
 The behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.
@@ -252,7 +263,7 @@ For example, when doing 'df[col].method(value, inplace=True)', try using 'df.met
 </code></pre>
 </div>
 </div>
-<div id="c213c09c" class="cell" data-execution_count="4">
+<div id="2a7cc0fd" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>data.dropna(thresh<span class="op">=</span><span class="bu">len</span>(data) <span class="op">*</span> <span class="fl">0.5</span>, axis<span class="op">=</span><span class="dv">1</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize missing data</span></span>
@@ -299,13 +310,13 @@ For example, when doing 'df[col].method(value, inplace=True)', try using 'df.met
 </section>
 <section id="remove-duplicates" class="level2">
 <h2 class="anchored" data-anchor-id="remove-duplicates">Remove Duplicates</h2>
-<div id="31bbcca5" class="cell" data-execution_count="5">
+<div id="4242f339" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data.drop_duplicates(subset<span class="op">=</span>[<span class="st">"TITLE"</span>, <span class="st">"COMPANY"</span>, <span class="st">"LOCATION"</span>, <span class="st">"POSTED"</span>], keep<span class="op">=</span><span class="st">"first"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="job-postings-by-industry" class="level2">
 <h2 class="anchored" data-anchor-id="job-postings-by-industry">Job Postings by Industry</h2>
-<div id="d3e837f7" class="cell" data-execution_count="6">
+<div id="473a81e1" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib <span class="im">as</span> mpl</span>
@@ -350,7 +361,7 @@ For example, when doing 'df[col].method(value, inplace=True)', try using 'df.met
 </section>
 <section id="salary-distribution-by-industry" class="level2">
 <h2 class="anchored" data-anchor-id="salary-distribution-by-industry">Salary Distribution by Industry</h2>
-<div id="2a88eafa" class="cell" data-execution_count="7">
+<div id="2b9bec71" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib <span class="im">as</span> mpl</span>
@@ -403,7 +414,7 @@ For example, when doing 'df[col].method(value, inplace=True)', try using 'df.met
 </section>
 <section id="remote-vs.-on-site-jobs" class="level2">
 <h2 class="anchored" data-anchor-id="remote-vs.-on-site-jobs">Remote vs.&nbsp;On-Site Jobs</h2>
-<div id="d42678cb" class="cell" data-execution_count="8">
+<div id="861bdaba" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib <span class="im">as</span> mpl</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -506,6 +517,152 @@ For example, when doing 'df[col].method(value, inplace=True)', try using 'df.met
 <li>A large number of job postings do not specify whether the job is remote or on-site.</li>
 </ul></li>
 </ul>
+</section>
+<section id="team-skill-level-dataframe" class="level2">
+<h2 class="anchored" data-anchor-id="team-skill-level-dataframe">Team Skill Level Dataframe</h2>
+<p><!-- Each team member should list their current skills relevant to their selected IT career path.
+Use a numerical scale (1-5) to indicate proficiency levels:
+1 = Beginner
+2 = Basic knowledge
+3 = Intermediate
+4 = Advanced
+5 = Expert --></p>
+<div id="55bfe370" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>skills_data <span class="op">=</span> {</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Name"</span>: [<span class="st">"Ava"</span>, <span class="st">"Mahira"</span>, <span class="st">"Joshua"</span>],</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Python"</span>: [<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>],</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"SQL"</span>: [<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">4</span>],</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Machine Learning"</span>: [<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>],</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Cloud Computing"</span>: [<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>]</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>df_skills <span class="op">=</span> pd.DataFrame(skills_data)</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>df_skills.set_index(<span class="st">"Name"</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>df_skills</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Python</th>
+<th data-quarto-table-cell-role="th">SQL</th>
+<th data-quarto-table-cell-role="th">Machine Learning</th>
+<th data-quarto-table-cell-role="th">Cloud Computing</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Name</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Ava</th>
+<td>2</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Mahira</th>
+<td>3</td>
+<td>1</td>
+<td>3</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Joshua</th>
+<td>3</td>
+<td>4</td>
+<td>2</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="visualizing-skill-gaps-in-heatmap-with-plotly" class="level2">
+<h2 class="anchored" data-anchor-id="visualizing-skill-gaps-in-heatmap-with-plotly">Visualizing Skill Gaps in Heatmap with Plotly</h2>
+<div id="eae1dad6" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> kaleido</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>custom_colorscale <span class="op">=</span> [<span class="st">"#B14E53"</span>, <span class="st">"#78C2AD"</span>, ]</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> px.imshow(df_skills,</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a> labels<span class="op">=</span><span class="bu">dict</span>(x<span class="op">=</span><span class="st">"Skill"</span>, y<span class="op">=</span><span class="st">"Team Member Name"</span>, color<span class="op">=</span><span class="st">"Skill Self Rating"</span>),</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a> title<span class="op">=</span><span class="st">"Key IT Skill Rating Heatmap per Team Member"</span>,</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    color_continuous_scale<span class="op">=</span>custom_colorscale</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>fig.update_layout(</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  title<span class="op">=</span><span class="bu">dict</span>(</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>    text<span class="op">=</span><span class="st">"Key IT Skill Rating Heatmap per Team Member"</span>,</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    font<span class="op">=</span><span class="bu">dict</span>(size<span class="op">=</span><span class="dv">18</span>, family<span class="op">=</span><span class="st">"Verdana"</span>, color<span class="op">=</span><span class="st">"black"</span>, weight<span class="op">=</span><span class="st">"bold"</span>)</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>  xaxis<span class="op">=</span><span class="bu">dict</span>(</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span><span class="bu">dict</span>(text<span class="op">=</span><span class="st">"Skill"</span>, font<span class="op">=</span><span class="bu">dict</span>(size<span class="op">=</span><span class="dv">20</span>, family<span class="op">=</span><span class="st">"Verdana"</span>, color<span class="op">=</span><span class="st">"black"</span>, weight<span class="op">=</span><span class="st">"bold"</span>)),</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>    tickangle<span class="op">=</span><span class="dv">90</span>,</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>    tickfont<span class="op">=</span><span class="bu">dict</span>(size<span class="op">=</span><span class="dv">14</span>, family<span class="op">=</span><span class="st">"Verdana"</span>, color<span class="op">=</span><span class="st">"black"</span>, weight<span class="op">=</span><span class="st">"bold"</span>),</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>    showline<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>    linewidth<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>    linecolor<span class="op">=</span><span class="st">"black"</span>,</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>    mirror<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>    showgrid<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>  yaxis<span class="op">=</span><span class="bu">dict</span>(</span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span><span class="bu">dict</span>(text<span class="op">=</span><span class="st">"Teammember Name"</span>, font<span class="op">=</span><span class="bu">dict</span>(size<span class="op">=</span><span class="dv">14</span>, family<span class="op">=</span><span class="st">"Verdana"</span>, color<span class="op">=</span><span class="st">"black"</span>, weight<span class="op">=</span><span class="st">"bold"</span>)),</span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>    showline<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a>    linewidth<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>    linecolor<span class="op">=</span><span class="st">"black"</span>,</span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a>    mirror<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a>    showgrid<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a>    gridcolor<span class="op">=</span><span class="st">"white"</span>,</span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a>    gridwidth<span class="op">=</span><span class="fl">0.5</span></span>
+<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a>  font<span class="op">=</span><span class="bu">dict</span>(family<span class="op">=</span><span class="st">"Verdana"</span>, size<span class="op">=</span><span class="dv">14</span>, color<span class="op">=</span><span class="st">"black"</span>),</span>
+<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a>  paper_bgcolor<span class="op">=</span><span class="st">"white"</span>,</span>
+<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a>  showlegend<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a>fig.show()</span>
+<span id="cb17-39"><a href="#cb17-39" aria-hidden="true" tabindex="-1"></a>fig.write_image(<span class="st">"figures/skill_heatmap.png"</span>)</span>
+<span id="cb17-40"><a href="#cb17-40" aria-hidden="true" tabindex="-1"></a>fig.write_html(<span class="st">"figures/skill_heatmap.html"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>            <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_SVG"></script><script type="text/javascript">if (window.MathJax && window.MathJax.Hub && window.MathJax.Hub.Config) {window.MathJax.Hub.Config({SVG: {font: "STIX-Web"}});}</script>                <script type="text/javascript">window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
+        <script charset="utf-8" src="https://cdn.plot.ly/plotly-3.1.0.min.js" integrity="sha256-Ei4740bWZhaUTQuD6q9yQlgVCMPBz6CZWhevDYPv93A=" crossorigin="anonymous"></script>                <div id="093721d0-3b8f-481b-a670-cfeb57efe921" class="plotly-graph-div" style="height:525px; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("093721d0-3b8f-481b-a670-cfeb57efe921")) {                    Plotly.newPlot(                        "093721d0-3b8f-481b-a670-cfeb57efe921",                        [{"coloraxis":"coloraxis","name":"0","x":["Python","SQL","Machine Learning","Cloud Computing"],"y":["Ava","Mahira","Joshua"],"z":{"dtype":"i1","bdata":"AgIBAQMBAwEDBAIB","shape":"3, 4"},"type":"heatmap","xaxis":"x","yaxis":"y","hovertemplate":"Skill: %{x}\u003cbr\u003eTeam Member Name: %{y}\u003cbr\u003eSkill Self Rating: %{z}\u003cextra\u003e\u003c\u002fextra\u003e"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"},"margin":{"b":0,"l":0,"r":0,"t":30}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"scaleanchor":"y","constrain":"domain","title":{"text":"Skill","font":{"size":20,"family":"Verdana","color":"black","weight":"bold"}},"tickfont":{"size":14,"family":"Verdana","color":"black","weight":"bold"},"tickangle":90,"showline":true,"linewidth":2,"linecolor":"black","mirror":true,"showgrid":true},"yaxis":{"anchor":"x","domain":[0.0,1.0],"autorange":"reversed","constrain":"domain","title":{"text":"Teammember Name","font":{"size":14,"family":"Verdana","color":"black","weight":"bold"}},"showline":true,"linewidth":2,"linecolor":"black","mirror":true,"showgrid":true,"gridcolor":"white","gridwidth":0.5},"coloraxis":{"colorbar":{"title":{"text":"Skill Self Rating"}},"colorscale":[[0.0,"#B14E53"],[1.0,"#78C2AD"]]},"title":{"text":"Key IT Skill Rating Heatmap per Team Member","font":{"size":18,"family":"Verdana","color":"black","weight":"bold"}},"font":{"family":"Verdana","size":14,"color":"black"},"paper_bgcolor":"white","showlegend":true},                        {"responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('093721d0-3b8f-481b-a670-cfeb57efe921');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };            </script>        </div>
+</div>
+</div>
 </section>
 </section>
 
