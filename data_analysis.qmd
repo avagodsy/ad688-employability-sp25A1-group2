@@ -121,6 +121,8 @@ plt.show()
 plt.savefig("figures/missing_values.png")
 ```
 
+![](./figures/missing_values.png) 
+
 The heatmap shows a few missing values in the dataset. In this dataset most fields cluster near 1. The value 1 (dark blue) means the two columns have missing values together. 0.0 value (white) suggest there is no relationship.
 
 ## Remove Duplicates 
@@ -168,6 +170,8 @@ plt.show()
 plt.savefig("figures/top_postings.png")
 ```
 
+![](./figures/top_postings.png) 
+
 ## Salary Distribution by Industry
 
 ```{python}
@@ -213,6 +217,8 @@ plt.show()
 plt.savefig("figures/salary_dist.png")
 
 ```
+
+![](./figures/salary_dist.png) 
 
 ## Remote vs. On-Site Jobs
 
@@ -266,6 +272,8 @@ plt.show()
 plt.savefig("figures/remote_onsite.png")
 
 ```
+
+![](./figures/remote_onsite.png) 
 
 ## Why these visualizations were chosen
 
@@ -369,3 +377,5 @@ fig.show()
 fig.write_image("figures/skill_heatmap.png")
 fig.write_html("figures/skill_heatmap.html")
 ```
+
+![](./figures/skill_heatmap.png) 

@@ -44,6 +44,8 @@ print(skills_df_pd)
 skills_df_pd.to_csv("data/skills_job_description.csv", index=False)
 ```
 
+
+
 ```{python}
 #| eval: false
 #| echo: true 
@@ -92,7 +94,7 @@ top_skills_fig.write_image("figures/top_skills.png")
 top_skills_fig.write_html("figures/top_skills.html")
 
 ```
-
+![](./figures/top_skills.png) 
 #  Which skills should each member prioritize learning? 
 
 - Based on the self assessment rating of each member of the group, everyone should prioritize learning cloud computing. 
