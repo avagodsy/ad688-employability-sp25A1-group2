@@ -16,7 +16,8 @@ author:
 ---
 
 ```{python}
-
+#| eval: false
+#| echo: true 
 import pandas as pd
 df = pd.read_csv("data/lightcast_job_postings.csv")
 
@@ -25,6 +26,8 @@ filtered_df = filtered_df.dropna()
 ```
 
 ```{python}
+#| eval: false
+#| echo: true 
 # Assuming job_descriptions is a list of text from job postings
 top_skills = ["Python", "SQL", "Machine Learning", "Cloud Computing", "Docker", "AWS"]
 
@@ -38,7 +41,11 @@ print(skills_df_pd)
 skills_df_pd.to_csv("data/skills_job_description.csv", index=False)
 ```
 
+
+
 ```{python}
+#| eval: false
+#| echo: true 
 import plotly.express as px
 
 top_skills_fig = px.bar(
@@ -84,7 +91,7 @@ top_skills_fig.write_image("./figures/top_skills.png")
 top_skills_fig.write_html("./figures/top_skills.html")
 
 ```
-
+![](./figures/top_skills.png) 
 #  Which skills should each member prioritize learning? 
 
 - Based on the self assessment rating of each member of the group, everyone should prioritize learning cloud computing. 
