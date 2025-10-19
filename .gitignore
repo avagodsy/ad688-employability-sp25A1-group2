@@ -1,6 +1,0 @@
-/.quarto/
-**/*.quarto_ipynb
-*.csv
-.venv
-data/lightcast_job_postings.csv
-data/skills_job_description.csv
