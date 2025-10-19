@@ -17,7 +17,7 @@ format:
   html:
     toc: true
 execute: 
-  eval: false
+  eval: true
 ---
 
 
@@ -509,7 +509,7 @@ from sklearn.metrics import r2_score, mean_squared_error
 import numpy as np
 
 # Load data
-df = pd.read_csv("lightcast_job_postings.csv")
+df = pd.read_csv("data/lightcast_job_postings.csv")
 
 # Keep relevant columns
 cols = ['STATE_NAME', 'TITLE_NAME', 'SPECIALIZED_SKILLS_NAME', 'SALARY_FROM', 'SALARY_TO']
@@ -556,9 +556,8 @@ fig.update_layout(
     font=dict(family="Roboto", size=14),
     xaxis={'categoryorder': 'total descending'}
 )
-
-fig.show()
 fig.write_image("figures/statesalary.png")
+fig.show()
 
 # Regression model – Predict salary using AI classification and state
 le_state = LabelEncoder()
@@ -598,7 +597,7 @@ import plotly.graph_objects as go
 # --------------------------------------------------
 # 1. Load and clean the dataset
 # --------------------------------------------------
-df_clean = pd.read_csv("lightcast_job_postings.csv")  
+df_clean = pd.read_csv("data/lightcast_job_postings.csv")  
 
 # Convert salary-related columns to numeric (replace with actual salary column name)
 # Try to find which column represents salary (SALARY, SALARY_FROM, AVERAGE_SALARY, etc.)
@@ -681,8 +680,8 @@ fig.update_layout(
     hovermode='closest'
 )
 
-fig.show()
 fig.write_image("figures/kmeans.png")
+fig.show()
 ```
 
 ![](./figures/kmeans.png) 
