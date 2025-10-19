@@ -94,7 +94,7 @@ div.csl-indent {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-7d8f446abc168d75111c8ab93f0c9211.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-d355e982762bbb39d423a16d584142bd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -265,7 +265,7 @@ Industries that will see the most significant wage growth from 2023 and 2033 are
 <h1>Exploratory Data Analysis</h1>
 <section id="importing-dataset-using-pandas" class="level2">
 <h2 class="anchored" data-anchor-id="importing-dataset-using-pandas">Importing Dataset Using Pandas</h2>
-<div id="e1a22501" class="cell" data-execution_count="1">
+<div id="c892b4ee" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the dataset</span></span>
@@ -282,7 +282,7 @@ The dataset contains multiple versions of industry NAICS and Occupational SOC wh
 <li><p><strong>How will this improve analysis?</strong><br>
 This will improve the analysis by enhancing the efficiency of the data; by having smaller datasets it will be easier to process and run data. It will also improve consistency because by having only one version of the data the risk of duplication will be low.</p></li>
 </ul>
-<div id="2afcc59e" class="cell" data-execution_count="2">
+<div id="388a0c1d" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>columns_to_drop <span class="op">=</span> [</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="st">'LAST_UPDATED_DATE'</span>, <span class="st">'LAST_UPDATED_TIMESTAMP'</span>, <span class="st">'DUPLICATES'</span>, <span class="st">'EXPIRED'</span>, <span class="st">'ACTIVE_SOURCES_INFO'</span>, <span class="st">'TITLE_RAW'</span>,<span class="st">'BODY'</span>,</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="st">'COMPANY_NAME'</span>, <span class="st">'COMPANY_RAW'</span>, <span class="st">'COMPANY_IS_STAFFING'</span>, <span class="st">'EDUCATION_LEVELS'</span>, <span class="st">'EDUCATION_LEVELS_NAME'</span>, <span class="st">'MIN_EDULEVELS'</span>,</span>
@@ -311,7 +311,7 @@ This will improve the analysis by enhancing the efficiency of the data; by havin
 <li>Columns with &gt;50% missing values are dropped.</li>
 </ul></li>
 </ul>
-<div id="13602878" class="cell" data-execution_count="3">
+<div id="5ad54f30" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> missingno <span class="im">as</span> msno</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -324,7 +324,7 @@ This will improve the analysis by enhancing the efficiency of the data; by havin
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>data.rename(columns<span class="op">=</span>{<span class="st">'NAICS_2022_6_NAME'</span>: <span class="st">'INDUSTRY'</span>}, inplace<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="ca1cd38c" class="cell" data-execution_count="4">
+<div id="f4b83ec7" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>data.dropna(thresh<span class="op">=</span><span class="bu">len</span>(data) <span class="op">*</span> <span class="fl">0.5</span>, axis<span class="op">=</span><span class="dv">1</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize missing data</span></span>
@@ -359,13 +359,13 @@ This will improve the analysis by enhancing the efficiency of the data; by havin
 </section>
 <section id="remove-duplicates" class="level2">
 <h2 class="anchored" data-anchor-id="remove-duplicates">Remove Duplicates</h2>
-<div id="21bbe969" class="cell" data-execution_count="5">
+<div id="56888196" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data.drop_duplicates(subset<span class="op">=</span>[<span class="st">"TITLE"</span>, <span class="st">"COMPANY"</span>, <span class="st">"LOCATION"</span>, <span class="st">"POSTED"</span>], keep<span class="op">=</span><span class="st">"first"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="job-postings-by-industry" class="level2">
 <h2 class="anchored" data-anchor-id="job-postings-by-industry">Job Postings by Industry</h2>
-<div id="bf55039a" class="cell" data-execution_count="6">
+<div id="0fd39228" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib <span class="im">as</span> mpl</span>
@@ -394,14 +394,15 @@ This will improve the analysis by enhancing the efficiency of the data; by havin
 <span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Industry"</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
 <span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">"figures/top_postings.png"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">"figures/top_postings.png"</span>)</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><img src="./figures/top_postings.png" class="img-fluid"></p>
 </section>
 <section id="salary-distribution-by-industry" class="level2">
 <h2 class="anchored" data-anchor-id="salary-distribution-by-industry">Salary Distribution by Industry</h2>
-<div id="e794d2a1" class="cell" data-execution_count="7">
+<div id="a4b62a68" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib <span class="im">as</span> mpl</span>
@@ -437,15 +438,16 @@ This will improve the analysis by enhancing the efficiency of the data; by havin
 <span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>plt.xticks(rotation<span class="op">=</span><span class="dv">45</span>, ha<span class="op">=</span><span class="st">'right'</span>)</span>
 <span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">"figures/salary_dist.png"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">"figures/salary_dist.png"</span>)</span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><img src="./figures/salary_dist.png" class="img-fluid"></p>
 </section>
 <section id="remote-vs.-on-site-jobs" class="level2">
 <h2 class="anchored" data-anchor-id="remote-vs.-on-site-jobs">Remote vs.&nbsp;On-Site Jobs</h2>
-<div id="bf6fabc8" class="cell" data-execution_count="8">
+<div id="93bd139e" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib <span class="im">as</span> mpl</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -489,8 +491,9 @@ This will improve the analysis by enhancing the efficiency of the data; by havin
 <span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> autotext <span class="kw">in</span> autotexts:</span>
 <span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>    autotext.set_fontsize(<span class="dv">14</span>)</span>
 <span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">"figures/remote_onsite.png"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">"figures/remote_onsite.png"</span>)</span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><img src="./figures/remote_onsite.png" class="img-fluid"></p>
 </section>
@@ -549,7 +552,7 @@ Use a numerical scale (1-5) to indicate proficiency levels:
 3 = Intermediate
 4 = Advanced
 5 = Expert --></p>
-<div id="8e3711bf" class="cell" data-execution_count="9">
+<div id="de583f15" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>skills_data <span class="op">=</span> {</span>
@@ -567,7 +570,7 @@ Use a numerical scale (1-5) to indicate proficiency levels:
 </section>
 <section id="visualizing-skill-gaps-in-heatmap-with-plotly" class="level2">
 <h2 class="anchored" data-anchor-id="visualizing-skill-gaps-in-heatmap-with-plotly">Visualizing Skill Gaps in Heatmap with Plotly</h2>
-<div id="9ff87e24" class="cell" data-execution_count="10">
+<div id="c8051057" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> kaleido</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>custom_colorscale <span class="op">=</span> [<span class="st">"#B14E53"</span>, <span class="st">"#78C2AD"</span>, ]</span>
@@ -605,21 +608,22 @@ Use a numerical scale (1-5) to indicate proficiency levels:
 <span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>  paper_bgcolor<span class="op">=</span><span class="st">"white"</span>,</span>
 <span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>  showlegend<span class="op">=</span><span class="va">True</span>,</span>
 <span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>fig.show()</span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a>fig.write_image(<span class="st">"figures/skill_heatmap.png"</span>)</span>
-<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a>fig.write_html(<span class="st">"figures/skill_heatmap.html"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a>fig.write_html(<span class="st">"figures/skill_heatmap.html"</span>)</span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a>fig.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><img src="./figures/skill_heatmap.png" class="img-fluid"></p>
 <hr>
 <p>title: “Skill Gap Analysis” author: - name: Mahira Ayub affiliations: - id: bu name: Boston University city: Boston state: MA - name: Ava Godsy affiliations: - ref: bu - name: Joshua Lawrence affiliations: - ref: bu execute: eval: false —</p>
-<div id="4f86a671" class="cell" data-execution_count="11">
+<div id="e8c2f870" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"data/lightcast_job_postings.csv"</span>)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>filtered_df <span class="op">=</span> df[[<span class="st">"ID"</span>, <span class="st">"BODY"</span>]]</span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>filtered_df <span class="op">=</span> filtered_df.dropna()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="cbcbe526" class="cell" data-execution_count="12">
+<div id="d89832c3" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming job_descriptions is a list of text from job postings</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>top_skills <span class="op">=</span> [<span class="st">"Python"</span>, <span class="st">"SQL"</span>, <span class="st">"Machine Learning"</span>, <span class="st">"Cloud Computing"</span>, <span class="st">"Docker"</span>, <span class="st">"AWS"</span>]</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -632,7 +636,7 @@ Use a numerical scale (1-5) to indicate proficiency levels:
 <span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(skills_df_pd)</span>
 <span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>skills_df_pd.to_csv(<span class="st">"data/skills_job_description.csv"</span>, index<span class="op">=</span><span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="5f71b75d" class="cell" data-execution_count="13">
+<div id="87cef903" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>top_skills_fig <span class="op">=</span> px.bar(</span>

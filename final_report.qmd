@@ -5,6 +5,8 @@ author:
   - name: Mahira Ayub
   - name: Ava Godsy
   - name: Joshua Lawrence
+format: 
+  docx: default
 ---
 {{< include research_introduction.qmd >}}
 {{< include data_analysis.qmd >}}
