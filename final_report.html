@@ -6,9 +6,6 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Mahira Ayub">
-<meta name="author" content="Ava Godsy">
-<meta name="author" content="Joshua Lawrence">
 
 <title>Data Analysis – Job Market Analysis 2025, Group 2</title>
 <style>
@@ -58,7 +55,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -139,7 +155,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Introduction</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./data_analysis.html" aria-current="page"> 
+    <a class="nav-link" href="./data_analysis.html"> 
 <span class="menu-text">Data Cleaning &amp; Exploration</span></a>
   </li>  
   <li class="nav-item">
@@ -166,7 +182,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#exploratory-data-analysis" id="toc-exploratory-data-analysis" class="nav-link active" data-scroll-target="#exploratory-data-analysis">Exploratory Data Analysis</a>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#literature-review" id="toc-literature-review" class="nav-link" data-scroll-target="#literature-review">Literature Review</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  <li><a href="#exploratory-data-analysis" id="toc-exploratory-data-analysis" class="nav-link" data-scroll-target="#exploratory-data-analysis">Exploratory Data Analysis</a>
   <ul class="collapse">
   <li><a href="#importing-dataset-using-pandas" id="toc-importing-dataset-using-pandas" class="nav-link" data-scroll-target="#importing-dataset-using-pandas">Importing Dataset Using Pandas</a></li>
   <li><a href="#dropping-unncessary-columns" id="toc-dropping-unncessary-columns" class="nav-link" data-scroll-target="#dropping-unncessary-columns">Dropping Unncessary Columns</a></li>
@@ -180,6 +199,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#team-skill-level-dataframe" id="toc-team-skill-level-dataframe" class="nav-link" data-scroll-target="#team-skill-level-dataframe">Team Skill Level Dataframe</a></li>
   <li><a href="#visualizing-skill-gaps-in-heatmap-with-plotly" id="toc-visualizing-skill-gaps-in-heatmap-with-plotly" class="nav-link" data-scroll-target="#visualizing-skill-gaps-in-heatmap-with-plotly">Visualizing Skill Gaps in Heatmap with Plotly</a></li>
   </ul></li>
+  <li><a href="#which-skills-should-each-member-prioritize-learning" id="toc-which-skills-should-each-member-prioritize-learning" class="nav-link" data-scroll-target="#which-skills-should-each-member-prioritize-learning">Which skills should each member prioritize learning?</a></li>
+  <li><a href="#what-courses-or-resources-can-help" id="toc-what-courses-or-resources-can-help" class="nav-link" data-scroll-target="#what-courses-or-resources-can-help">What courses or resources can help?</a></li>
+  <li><a href="#how-can-the-team-collaborate-to-bridge-skill-gaps" id="toc-how-can-the-team-collaborate-to-bridge-skill-gaps" class="nav-link" data-scroll-target="#how-can-the-team-collaborate-to-bridge-skill-gaps">How can the team collaborate to bridge skill gaps?</a></li>
   </ul>
 </nav>
     </div>
@@ -193,39 +215,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 
 
-<div class="quarto-title-meta-author">
-  <div class="quarto-title-meta-heading">Authors</div>
-  <div class="quarto-title-meta-heading">Affiliation</div>
-  
-    <div class="quarto-title-meta-contents">
-    <p class="author">Mahira Ayub </p>
-  </div>
-  <div class="quarto-title-meta-contents">
-        <p class="affiliation">
-            Boston University
-          </p>
-      </div>
-    <div class="quarto-title-meta-contents">
-    <p class="author">Ava Godsy </p>
-  </div>
-  <div class="quarto-title-meta-contents">
-        <p class="affiliation">
-            Boston University
-          </p>
-      </div>
-    <div class="quarto-title-meta-contents">
-    <p class="author">Joshua Lawrence </p>
-  </div>
-  <div class="quarto-title-meta-contents">
-        <p class="affiliation">
-            Boston University
-          </p>
-      </div>
-  </div>
 
 <div class="quarto-title-meta">
 
-      
+    <div>
+    <div class="quarto-title-meta-heading">Authors</div>
+    <div class="quarto-title-meta-contents">
+             <p>Mahira Ayub </p>
+             <p>Ava Godsy </p>
+             <p>Joshua Lawrence </p>
+          </div>
+  </div>
+    
   
     
   </div>
@@ -235,11 +236,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>It is no secret that AI has grown tremendously in availability and impact over the last few years. Students and professionals alike have experienced a rapid indoctrination of AI, whether that be as a simple end-user of ChatGPT or a developer of machine learning models. Being able to understand and adopt these technologies will be indispensable for all industries, and furthermore, open the door to more opportunities with higher compensation.<br>
+<br>
+As Applied Business Analytics students, we understand the importance of not only computer science knowledge, but the application of that knowledge to broader organizational understanding. The following literature review outlines the differences between salaries for AI vs.&nbsp;non-AI careers, regional differences, remote job salary comparisons, and industry comparisons.<br>
+<br>
+This group expects that salaries will be higher for AI careers than for non-AI careers on average. However, unknown is what region and industries have the greatest differences, and whether or not remote status impacts salaries for AI careers.</p>
+</section>
+<section id="literature-review" class="level2">
+<h2 class="anchored" data-anchor-id="literature-review">Literature Review</h2>
+<p>In this report, researchers Alekseeva et. al.&nbsp;(<span class="citation" data-cites="Alekseeva_Azar_Giné_Samila_Taska_2021">Alekseeva et al. (<a href="#ref-Alekseeva_Azar_Giné_Samila_Taska_2021" role="doc-biblioref">(2021)</a>)</span>) recapped their findings of the demand for AI skills in the U.S. economy. The authors point out that it can be difficult to find data regarding companies’ demand for AI skills, so they used job posting data. They defined AI job postings as those that included “artificial intelligence”, “machine vision”, “deep learning” or “speech recognition”. They found that larger firms (measured by market capitalization, cash holdings, and investments in R&amp;D) tended to pay more of a premium for AI skills. Firms with more demand for AI skills also offered high salaries in non-AI jobs than firms with less demand for AI skills.<br>
+<br>
+The results also showed that while IT-related industries have the highest demand for AI skills, there is significant growth across a wide range of industries outside of IT as well. Across all industries, AI skills hold an average of an 11% wage premium. The job with the largest premium is Management; the authors surmise that this means AI has the greatest value when combined with organizational knowledge.<br>
+<br>
+Authors Pabilonia and Vernon outline differences in compensation for remote and in-office roles (<span class="citation" data-cites="Pabilonia_Vernon_2025">Pabilonia and Vernon (<a href="#ref-Pabilonia_Vernon_2025" role="doc-biblioref">(2025)</a>)</span>). Using data from American Time Use Survey (ATUS) they note that remote work has increased in the US since 2020 (causal connection with the COVID-19 pandemic), and importantly “remote workers in most occupations earned a wage premium”. The authors performed extensive mathematical analysis within the paper, determining that in 2021 there was a 13.3% premium for remote work versus in-office work. Wages within the paper are indicated as being “determined by a number of factors, including job tasks, productivity differences, compensating differentials for job amenities, search frictions, and monopsony power, among others”. The authors also touched on disparity in pay within the principal city of the large metropolitan statistical area (MSA), noting that the wage premium for individuals working within the MSA was smaller (12.6%) than those working outside the 15 largest MDAs (14.5%).<br>
+<br>
+Card et. al.&nbsp;(<span class="citation" data-cites="NBERw31587">Card, Rothstein, and Yi (<a href="#ref-NBERw31587" role="doc-biblioref">(2023)</a>)</span>) discuss the locale for the highest paid jobs within the US. Unsurprisingly, using “data from the Longitudinal Employer-Household Dynamics program” the authors demonstrate connections between location and salary. Regions in major metropolitans and large industries have wage premiums up to 18% higher than national averages. The authors theorize that larger cities pay more due to their ability to attract and retain higher-skilled workers and the likely presence of large companies to support the talent. The authors do however also find that despite the higher wages in the major commuting zones (CZs), local costs “fully offset local pay premiums, implying that workers who move to larger CZs have no higher net-of-housing consumption”. This leads to the understanding that while more highly compensated in major metropolitan areas, the cost of living consumes the wage premium.<br>
+<br>
+According to the U.S. Bureau of Labor Statistics (BLS) (<span class="citation" data-cites="bls2024projections">Labor Statistics (<a href="#ref-bls2024projections" role="doc-biblioref">(2024)</a>)</span>), total employment is projected to grow by 4 percent between 2023 and 2033. There is also an expected increase in the number of jobs from 2023 to 2033 from 167.8 million to 17.46 million. Half of the forecasted job gains are expected to be in sectors such as healthcare, scientific and technical services. Whereas, the retail sector is more likely to lose jobs over the coming years.<br>
+<br>
+Industries that will see the most significant wage growth from 2023 and 2033 are those that will have a strong demand for specialized labor. Healthcare and social assistance jobs will see a rise in high paying roles such as nurse practitioners and physical therapists assistants. This sector will experience continued growth due to skill labor shortages and aging population. The scientific and technical services sector is expected to grow by 10.5% and it includes high paying roles such as software developers, cybersecurity professionals and data scientists. Renewable Energy industries sector will see an increase in jobs over the years as demand for photovoltaic installers and wind turbines service technicians is increasing and are expected to be hired at competitive rates.</p>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+</section>
 <section id="exploratory-data-analysis" class="level1">
 <h1>Exploratory Data Analysis</h1>
 <section id="importing-dataset-using-pandas" class="level2">
 <h2 class="anchored" data-anchor-id="importing-dataset-using-pandas">Importing Dataset Using Pandas</h2>
-<div id="204fb2f3" class="cell" data-execution_count="1">
+<div id="c87f071f" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the dataset</span></span>
@@ -256,7 +282,7 @@ The dataset contains multiple versions of industry NAICS and Occupational SOC wh
 <li><p><strong>How will this improve analysis?</strong><br>
 This will improve the analysis by enhancing the efficiency of the data; by having smaller datasets it will be easier to process and run data. It will also improve consistency because by having only one version of the data the risk of duplication will be low.</p></li>
 </ul>
-<div id="c00d19e0" class="cell" data-execution_count="2">
+<div id="6b4025e8" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>columns_to_drop <span class="op">=</span> [</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="st">'LAST_UPDATED_DATE'</span>, <span class="st">'LAST_UPDATED_TIMESTAMP'</span>, <span class="st">'DUPLICATES'</span>, <span class="st">'EXPIRED'</span>, <span class="st">'ACTIVE_SOURCES_INFO'</span>, <span class="st">'TITLE_RAW'</span>,<span class="st">'BODY'</span>,</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="st">'COMPANY_NAME'</span>, <span class="st">'COMPANY_RAW'</span>, <span class="st">'COMPANY_IS_STAFFING'</span>, <span class="st">'EDUCATION_LEVELS'</span>, <span class="st">'EDUCATION_LEVELS_NAME'</span>, <span class="st">'MIN_EDULEVELS'</span>,</span>
@@ -285,7 +311,7 @@ This will improve the analysis by enhancing the efficiency of the data; by havin
 <li>Columns with &gt;50% missing values are dropped.</li>
 </ul></li>
 </ul>
-<div id="6192dd8e" class="cell" data-execution_count="3">
+<div id="8480c6e5" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> missingno <span class="im">as</span> msno</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -298,7 +324,7 @@ This will improve the analysis by enhancing the efficiency of the data; by havin
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>data.rename(columns<span class="op">=</span>{<span class="st">'NAICS_2022_6_NAME'</span>: <span class="st">'INDUSTRY'</span>}, inplace<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="61ad362c" class="cell" data-execution_count="4">
+<div id="986e1a82" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>data.dropna(thresh<span class="op">=</span><span class="bu">len</span>(data) <span class="op">*</span> <span class="fl">0.5</span>, axis<span class="op">=</span><span class="dv">1</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize missing data</span></span>
@@ -333,13 +359,13 @@ This will improve the analysis by enhancing the efficiency of the data; by havin
 </section>
 <section id="remove-duplicates" class="level2">
 <h2 class="anchored" data-anchor-id="remove-duplicates">Remove Duplicates</h2>
-<div id="5b54aa3b" class="cell" data-execution_count="5">
+<div id="8346d205" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data.drop_duplicates(subset<span class="op">=</span>[<span class="st">"TITLE"</span>, <span class="st">"COMPANY"</span>, <span class="st">"LOCATION"</span>, <span class="st">"POSTED"</span>], keep<span class="op">=</span><span class="st">"first"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="job-postings-by-industry" class="level2">
 <h2 class="anchored" data-anchor-id="job-postings-by-industry">Job Postings by Industry</h2>
-<div id="1d67d092" class="cell" data-execution_count="6">
+<div id="9e62e191" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib <span class="im">as</span> mpl</span>
@@ -376,7 +402,7 @@ This will improve the analysis by enhancing the efficiency of the data; by havin
 </section>
 <section id="salary-distribution-by-industry" class="level2">
 <h2 class="anchored" data-anchor-id="salary-distribution-by-industry">Salary Distribution by Industry</h2>
-<div id="85723524" class="cell" data-execution_count="7">
+<div id="a51309c8" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib <span class="im">as</span> mpl</span>
@@ -421,7 +447,7 @@ This will improve the analysis by enhancing the efficiency of the data; by havin
 </section>
 <section id="remote-vs.-on-site-jobs" class="level2">
 <h2 class="anchored" data-anchor-id="remote-vs.-on-site-jobs">Remote vs.&nbsp;On-Site Jobs</h2>
-<div id="f661603b" class="cell" data-execution_count="8">
+<div id="313f41fa" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib <span class="im">as</span> mpl</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -526,7 +552,7 @@ Use a numerical scale (1-5) to indicate proficiency levels:
 3 = Intermediate
 4 = Advanced
 5 = Expert --></p>
-<div id="85bf61ba" class="cell" data-execution_count="9">
+<div id="e9478a62" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>skills_data <span class="op">=</span> {</span>
@@ -544,7 +570,7 @@ Use a numerical scale (1-5) to indicate proficiency levels:
 </section>
 <section id="visualizing-skill-gaps-in-heatmap-with-plotly" class="level2">
 <h2 class="anchored" data-anchor-id="visualizing-skill-gaps-in-heatmap-with-plotly">Visualizing Skill Gaps in Heatmap with Plotly</h2>
-<div id="bb24fcd5" class="cell" data-execution_count="10">
+<div id="1c2a49c8" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> kaleido</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>custom_colorscale <span class="op">=</span> [<span class="st">"#B14E53"</span>, <span class="st">"#78C2AD"</span>, ]</span>
@@ -588,12 +614,123 @@ Use a numerical scale (1-5) to indicate proficiency levels:
 <span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a>fig.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><img src="./figures/skill_heatmap.png" class="img-fluid"></p>
+<hr>
+<p>title: “Skill Gap Analysis” author: - name: Mahira Ayub affiliations: - id: bu name: Boston University city: Boston state: MA - name: Ava Godsy affiliations: - ref: bu - name: Joshua Lawrence affiliations: - ref: bu execute: eval: false —</p>
+<div id="b854c0db" class="cell" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"data/lightcast_job_postings.csv"</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>filtered_df <span class="op">=</span> df[[<span class="st">"ID"</span>, <span class="st">"BODY"</span>]]</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>filtered_df <span class="op">=</span> filtered_df.dropna()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="ecf9c29e" class="cell" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming job_descriptions is a list of text from job postings</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>top_skills <span class="op">=</span> [<span class="st">"Python"</span>, <span class="st">"SQL"</span>, <span class="st">"Machine Learning"</span>, <span class="st">"Cloud Computing"</span>, <span class="st">"Docker"</span>, <span class="st">"AWS"</span>]</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>skill_counts <span class="op">=</span> {}</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> skill <span class="kw">in</span> top_skills:</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    skill_counts[skill] <span class="op">=</span> filtered_df[<span class="st">"BODY"</span>].<span class="bu">str</span>.contains(skill, case<span class="op">=</span><span class="va">False</span>, na<span class="op">=</span><span class="va">False</span>).<span class="bu">sum</span>()</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>skills_df_pd <span class="op">=</span> pd.DataFrame(<span class="bu">list</span>(skill_counts.items()), columns<span class="op">=</span>[<span class="st">'Skill'</span>, <span class="st">'Count'</span>])</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(skills_df_pd)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>skills_df_pd.to_csv(<span class="st">"data/skills_job_description.csv"</span>, index<span class="op">=</span><span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="a87e1fdc" class="cell" data-execution_count="13">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>top_skills_fig <span class="op">=</span> px.bar(</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    skills_df_pd,</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span><span class="st">'Skill'</span>,</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span><span class="st">'Count'</span>,</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span><span class="st">'Bar Chart of Job Description Skill Occurence'</span>,</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    color_discrete_sequence<span class="op">=</span>[<span class="st">'#3D7C6A'</span>]  <span class="co"># Set bar color</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Update layout for fonts and sizes</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>top_skills_fig.update_layout(</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    font<span class="op">=</span><span class="bu">dict</span>(</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>        family<span class="op">=</span><span class="st">"Verdana"</span>,</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>        size<span class="op">=</span><span class="dv">14</span>,</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span><span class="st">"black"</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span><span class="bu">dict</span>(</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>        font<span class="op">=</span><span class="bu">dict</span>(</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>            family<span class="op">=</span><span class="st">"Verdana"</span>,</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>            size<span class="op">=</span><span class="dv">18</span>,</span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>            color<span class="op">=</span><span class="st">"black"</span></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>    xaxis<span class="op">=</span><span class="bu">dict</span>(</span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>        title_font<span class="op">=</span><span class="bu">dict</span>(</span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>            family<span class="op">=</span><span class="st">"Verdana"</span>,</span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>            size<span class="op">=</span><span class="dv">14</span>,</span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>            color<span class="op">=</span><span class="st">"black"</span></span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>    yaxis<span class="op">=</span><span class="bu">dict</span>(</span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>        title_font<span class="op">=</span><span class="bu">dict</span>(</span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>            family<span class="op">=</span><span class="st">"Verdana"</span>,</span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a>            size<span class="op">=</span><span class="dv">14</span>,</span>
+<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a>            color<span class="op">=</span><span class="st">"black"</span></span>
+<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a>top_skills_fig.show()</span>
+<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a>top_skills_fig.write_image(<span class="st">"./figures/top_skills.png"</span>)</span>
+<span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a>top_skills_fig.write_html(<span class="st">"./figures/top_skills.html"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><img src="./figures/top_skills.png" class="img-fluid"></p>
+</section>
+</section>
+<section id="which-skills-should-each-member-prioritize-learning" class="level1">
+<h1>Which skills should each member prioritize learning?</h1>
+<ul>
+<li>Based on the self assessment rating of each member of the group, everyone should prioritize learning cloud computing.</li>
+<li>Cloud Computing is gaining popularity as data is moving to the cloud. Most companies are using cloud services to have easy access to data globally and in real time.</li>
+</ul>
+</section>
+<section id="what-courses-or-resources-can-help" class="level1">
+<h1>What courses or resources can help?</h1>
+<ul>
+<li>The resources and courses that can be helpful in learning cloud computing skills include:
+<ul>
+<li>Google Cloud Fundamentals</li>
+<li>AWS Academy Cloud Foundations</li>
+<li>Microsoft Learn - Azure Fundamentals</li>
+<li>AWS Certified Data Analytics – Specialty</li>
+<li>Azure Data Fundamentals (DP-900)</li>
+</ul></li>
+</ul>
+</section>
+<section id="how-can-the-team-collaborate-to-bridge-skill-gaps" class="level1">
+<h1>How can the team collaborate to bridge skill gaps?</h1>
+<ul>
+<li>Identify gaps that are related to the project needs and work on it as a group to learn from eachother.</li>
+<li>Split tasks and divide work according to each memeber’s skill level.</li>
+<li>Cross-train so everyone can learn from each other and develop understanding of cloud analytics tasks.</li>
+</ul>
+{{&lt; embed ml_methods.ipynb &gt;}}
+
 
 
 </section>
-</section>
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-Alekseeva_Azar_Giné_Samila_Taska_2021" class="csl-entry" role="listitem">
+<span class="smallcaps">Alekseeva, L., J. Azar, M. Giné, S. Samila, and B. Taska</span>. (2021): <span>“<a href="https://doi.org/10.1016/j.labeco.2021.102002">The demand for AI skills in the labor market</a>,”</span> <em>Labour Economics</em>, 71, 102002.
+</div>
+<div id="ref-NBERw31587" class="csl-entry" role="listitem">
+<span class="smallcaps">Card, D., J. Rothstein, and M. Yi</span>. (2023): <a href="https://doi.org/10.3386/w31587">Location, Location, Location</a>, Working Paper,. Working paper seriesNational Bureau of Economic Research.
+</div>
+<div id="ref-bls2024projections" class="csl-entry" role="listitem">
+<span class="smallcaps">Labor Statistics, B. of</span>. (2024): <span>“Industry and occupational employment projections overview and highlights, 2023–33,”</span> <em>Monthly Labor Review</em>,.
+</div>
+<div id="ref-Pabilonia_Vernon_2025" class="csl-entry" role="listitem">
+<span class="smallcaps">Pabilonia, S. W., and V. Vernon</span>. (2025): <span>“<a href="https://doi.org/10.1007/s00148-025-01064-9">Remote work, wages, and hours worked in the united states</a>,”</span> <em>Journal of Population Economics</em>, 38.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

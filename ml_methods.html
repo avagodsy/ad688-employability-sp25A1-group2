@@ -224,7 +224,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div id="d8639022" class="cell" data-execution_count="1">
+<div id="9d2adede" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Set JAVA_HOME</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>os.environ[<span class="st">'JAVA_HOME'</span>] <span class="op">=</span> <span class="vs">r'C:</span><span class="er">\</span><span class="vs">Program Files</span><span class="er">\</span><span class="vs">Java</span><span class="er">\</span><span class="vs">jdk-17'</span>  <span class="co"># Update to your exact path</span></span>
@@ -254,7 +254,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="co"># df.printSchema()</span></span>
 <span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co"># df.show(5)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="c4cebd48" class="cell" data-execution_count="2">
+<div id="3368ea6e" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.sql <span class="im">import</span> functions <span class="im">as</span> F</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.sql.types <span class="im">import</span> <span class="op">*</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.ml <span class="im">import</span> Pipeline</span>
@@ -301,7 +301,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>    F.when(F.col(<span class="st">"SALARY"</span>) <span class="op">&gt;</span> avg_salary, <span class="dv">1</span>).otherwise(<span class="dv">0</span>)</span>
 <span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="21361f53" class="cell" data-execution_count="3">
+<div id="1d78d327" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Handle SKILLS_NAME - it may contain arrays or null values</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract first skill or mark as "No Skills Listed"</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>df_clean <span class="op">=</span> df_clean.withColumn(</span>
@@ -343,7 +343,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Top 10 Skills by Frequency:"</span>)</span>
 <span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>features_df.groupBy(<span class="st">"PRIMARY_SKILL"</span>).count().orderBy(F.desc(<span class="st">"count"</span>)).show(<span class="dv">10</span>, truncate<span class="op">=</span><span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="0e44cc0b" class="cell" data-execution_count="4">
+<div id="39701786" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># String indexing for categorical variables</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>state_indexer <span class="op">=</span> StringIndexer(inputCol<span class="op">=</span><span class="st">"STATE_NAME"</span>, outputCol<span class="op">=</span><span class="st">"STATE_INDEX"</span>, handleInvalid<span class="op">=</span><span class="st">"keep"</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>title_indexer <span class="op">=</span> StringIndexer(inputCol<span class="op">=</span><span class="st">"TITLE_NAME"</span>, outputCol<span class="op">=</span><span class="st">"TITLE_INDEX"</span>, handleInvalid<span class="op">=</span><span class="st">"keep"</span>)</span>
@@ -366,7 +366,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Training set size: </span><span class="sc">{</span>train_data<span class="sc">.</span>count()<span class="sc">:,}</span><span class="ss">"</span>)</span>
 <span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Test set size: </span><span class="sc">{</span>test_data<span class="sc">.</span>count()<span class="sc">:,}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="edb0c078" class="cell" data-execution_count="5">
+<div id="84133a86" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Linear Regression model</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>lr <span class="op">=</span> LinearRegression(featuresCol<span class="op">=</span><span class="st">"features"</span>, labelCol<span class="op">=</span><span class="st">"SALARY"</span>, maxIter<span class="op">=</span><span class="dv">100</span>, regParam<span class="op">=</span><span class="fl">0.1</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -401,7 +401,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Sample Predictions:"</span>)</span>
 <span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>lr_predictions.select(<span class="st">"STATE_NAME"</span>, <span class="st">"TITLE_NAME"</span>, <span class="st">"PRIMARY_SKILL"</span>, <span class="st">"SALARY"</span>, <span class="st">"prediction"</span>).show(<span class="dv">10</span>, truncate<span class="op">=</span><span class="dv">50</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="a2b84949" class="cell" data-execution_count="6">
+<div id="f4f72a40" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Logistic Regression model</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>log_reg <span class="op">=</span> LogisticRegression(featuresCol<span class="op">=</span><span class="st">"features"</span>, labelCol<span class="op">=</span><span class="st">"ABOVE_AVERAGE_SALARY"</span>, maxIter<span class="op">=</span><span class="dv">100</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -436,7 +436,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>confusion_matrix <span class="op">=</span> log_predictions.groupBy(<span class="st">"ABOVE_AVERAGE_SALARY"</span>, <span class="st">"prediction"</span>).count()</span>
 <span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>confusion_matrix.orderBy(<span class="st">"ABOVE_AVERAGE_SALARY"</span>, <span class="st">"prediction"</span>).show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="9372ea47" class="cell" data-execution_count="7">
+<div id="5e5d9cd5" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract the trained linear regression model</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>trained_lr <span class="op">=</span> lr_model.stages[<span class="op">-</span><span class="dv">1</span>]</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>coefficients <span class="op">=</span> trained_lr.coefficients</span>
@@ -446,7 +446,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Number of features: </span><span class="sc">{</span><span class="bu">len</span>(coefficients)<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Sum of coefficients: </span><span class="sc">{</span><span class="bu">sum</span>(coefficients)<span class="sc">:,.2f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="0c0e5317" class="cell" data-execution_count="8">
+<div id="5481d5c3" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> kaleido</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>pred_data <span class="op">=</span> lr_predictions.select(<span class="st">"SALARY"</span>, <span class="st">"prediction"</span>, <span class="st">"STATE_NAME"</span>, <span class="st">"TITLE_NAME"</span>).limit(<span class="dv">1000</span>).collect()</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>pred_sample <span class="op">=</span> pd.DataFrame(pred_data, columns<span class="op">=</span>[<span class="st">"SALARY"</span>, <span class="st">"prediction"</span>, <span class="st">"STATE_NAME"</span>, <span class="st">"TITLE_NAME"</span>])</span>
@@ -671,7 +671,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1>Top 15 Job Titles by Average Salaries</h1>
 <p>The horizontal bar chart above highlights the top 15 job titles ranked by average salary among roles with at least five postings. The results show that Distinguished Architects and Enterprise Services Managers command the highest average salaries, both exceeding $270K annually. Other top earners include Directors of Enterprise Architecture and Advisory Solution Consultants, which also sit well above the $200K threshold.</p>
 <p>Overall, the visualization indicates that executive-level and architecture-focused roles tend to yield the highest compensation, reflecting the premium placed on leadership, system design, and strategic technical expertise in today’s data and cloud-driven job market.</p>
-<div id="6dff57dd" class="cell" data-execution_count="9">
+<div id="76149d58" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> LabelEncoder</span>
@@ -754,7 +754,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p><img src="./figures/statesalary.png" class="img-fluid"></p>
 <p>The bar chart shown above compares average salaries across U.S. states and shows jobs split between AI and non-AI roles. By looking at the graph we can see that AI-related jobs have higher average salaries than non-AI jobs. Some States like New Jersey, Connecticut, Montana and Arkansas have the highest salaries for AI roles. By looking at the overall data we can determine that AI expertise can boost earning potential nationwide.</p>
-<div id="3a7cbb6c" class="cell" data-execution_count="10">
+<div id="161003bd" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import libraries</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
