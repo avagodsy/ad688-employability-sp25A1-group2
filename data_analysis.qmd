@@ -170,8 +170,9 @@ plt.xlabel("Number of Job Postings", fontsize=14)
 plt.ylabel("Industry", fontsize=14)
 
 plt.tight_layout()
-plt.show()
+
 plt.savefig("figures/top_postings.png")
+plt.show()
 ```
 
 ![](./figures/top_postings.png) 
@@ -216,9 +217,10 @@ plt.ylabel("Salary", fontsize=14)
 plt.xticks(rotation=45, ha='right')
 
 plt.tight_layout()
-plt.show()
+
 
 plt.savefig("figures/salary_dist.png")
+plt.show()
 
 ```
 
@@ -272,8 +274,9 @@ plt.title("Remote vs. On-Site Jobs", fontsize=18, fontweight='bold', pad=20)
 for autotext in autotexts:
     autotext.set_fontsize(14)
 
-plt.show()
+
 plt.savefig("figures/remote_onsite.png")
+plt.show()
 
 ```
 
@@ -377,9 +380,10 @@ fig.update_layout(
   paper_bgcolor="white",
   showlegend=True,
 )
-fig.show()
+
 fig.write_image("figures/skill_heatmap.png")
 fig.write_html("figures/skill_heatmap.html")
+fig.show()
 ```
 
 ![](./figures/skill_heatmap.png) 
