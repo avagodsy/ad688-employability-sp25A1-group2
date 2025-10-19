@@ -25,7 +25,7 @@ execute:
 #| echo: true 
 import os
 # Set JAVA_HOME
-os.environ['JAVA_HOME'] = r'C:\Program Files\Java\jdk-17'  # Update to your exact path
+os.environ['JAVA_HOME'] = '/usr/lib/jvm/java-17-openjdk-amd64'  # Update to your exact path
 import pyspark
 from pyspark.sql import SparkSession
 import pandas as pd
