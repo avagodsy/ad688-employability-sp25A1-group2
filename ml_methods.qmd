@@ -17,7 +17,7 @@ format:
   html:
     toc: true
 execute: 
-  eval: true
+  eval: false
 ---
 
 
@@ -25,7 +25,8 @@ execute:
 #| echo: true 
 import os
 # Set JAVA_HOME
-os.environ['JAVA_HOME'] = r'C:\Program Files\Eclipse Adoptium\jdk-17.0.16.8-hotspot'  # Update to your exact path
+os.environ['JAVA_HOME'] = r"C:\Program Files\Eclipse Adoptium\jdk-17.0.16.8-hotspot"
+os.environ['PATH'] = os.environ['JAVA_HOME'] + r"\bin;" + os.environ['PATH']  # Update to your exact path
 import pyspark
 from pyspark.sql import SparkSession
 import pandas as pd
